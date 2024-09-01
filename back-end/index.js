@@ -27,6 +27,17 @@ app.get('/api/booking', (req, res) => {
     });
 });
 
+app.get('/api/users', (req, res) => {
+    const sql = 'SELECT * FROM users';
+    db.query(sql, (err, result) => {
+        if (err) {
+            response(500, null, 'Failed to retrieve users data', res);
+        } else {
+            response(200, result, 'Data From Table users', res);
+        }
+    });
+})
+
 // Midtrans Snap API setup
 let snap = new midtransClient.Snap({
     isProduction: false, // Set to true if you want Production Environment (accept real transaction).
@@ -93,6 +104,28 @@ app.post('/api/payment-notification', (req, res) => {
         }
     });
 });
+
+// Endpoint POST untuk membuat user baru
+app.post('/api/v1/create-users', (req, res) => {
+    const data = req.body;
+    console.log(data);
+    const id = Math.floor(Math.random() * 1000); // Generate random ID
+    const { username, password } = data;
+
+    let sql = `INSERT INTO users (user_id, username, password, role) VALUES (?, ?, ?, 'user')`;
+    let params = [id, username, password];
+
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            console.error('Failed to insert user record', err);
+            res.status(500).json({ message: 'Failed to insert user record' });
+        } else {
+            console.log('User record inserted successfully');
+            res.status(201).json({ message: 'User created successfully' });
+        }
+    });
+});
+
 // Start server
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}/`);

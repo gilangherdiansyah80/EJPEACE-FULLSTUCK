@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2, button1, button2, hover }) => {
+const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2, button1, button2, hover}) => {
   const [open, setOpen] = useState(false);
 
   const handerOpen = () => setOpen(!open);
@@ -59,8 +60,12 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
                   <li onClick={handerOpen} className={`${hover}`}>{menu3}</li>
                 </a>
                 <div className="flex gap-x-2">
-                  <button className={style1}>{button1}</button>
-                  <button className={style2}>{button2}</button>
+                  <Link to='/loginsection'>
+                    <button className={style1}>{button1}</button>
+                  </Link>
+                  <Link to='/register'>
+                    <button className={style2}>{button2}</button>
+                  </Link>
               </div>
               </ul>
             </nav>

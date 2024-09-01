@@ -6,6 +6,8 @@ import './index.css'
 import Stuido from './pages/stuido.jsx'
 import Academy from './pages/academy.jsx'
 import Squad from './pages/squad.jsx'
+import LoginSection from './pages/login.jsx'
+import Register from './pages/register.jsx'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
   {
     path: '/squad',
     element: <Squad />,
+  },
+  {
+    path: '/loginsection',
+    element: <LoginSection />,
+  },
+  {
+    path: '/register',
+    element: <Register />,
   },
 ])
 
