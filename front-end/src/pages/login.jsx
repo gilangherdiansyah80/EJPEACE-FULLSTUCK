@@ -14,7 +14,6 @@ const LoginSection = () => {
         const response = await fetch(endPoint);
         const data = await response.json();
         setDataUsers(data.payload.datas);
-        console.log(data.payload.datas)
     }
 
     useEffect(() => {
