@@ -45,7 +45,7 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
           {open && (
             <nav className="text-white lg:hidden bg-ejp w-full p-3 -ms-5 absolute z-10 mt-80">
               <ul className="flex flex-col gap-5 md:text-xl">
-                <a href="#home" onClick={(e) => handleClick("home", e)}>
+              <a href="#home" onClick={(e) => handleClick("home", e)}>
                   <li onClick={handerOpen} className={`${hover}`}>
                     Home
                   </li>
@@ -53,12 +53,12 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
                 <a href="#about" onClick={(e) => handleClick("about", e)}>
                   <li onClick={handerOpen} className={`${hover}`}>{menu1}</li>
                 </a>
-                <a href="#contact" onClick={(e) => handleClick("contact", e)}>
+                <a href="#unitBisnis" onClick={(e) => handleClick("unitBisnis", e)}>
                   <li onClick={handerOpen} className={`${hover}`}>{menu2}</li>
                 </a>
-                <a href="#unitBisnis" onClick={(e) => handleClick("unitBisnis", e)}>
-                  <li onClick={handerOpen} className={`${hover}`}>{menu3}</li>
-                </a>
+                <a href="#contact" onClick={(e) => handleClick("contact", e)}>
+                <li onClick={handerOpen} className={`${hover}`}>{menu3}</li>
+              </a>
                 <div className="flex gap-x-2">
                   <Link to='/loginsection'>
                     <button className={style1}>{button1}</button>
@@ -87,8 +87,12 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
                 <li className={`${hover}`}>{menu3}</li>
               </a>
               <div className="flex gap-x-2">
-                <button className={style1}>{button1}</button>
-                <button className={style2}>{button2}</button>
+                  <Link to='/loginsection'>
+                    <button className={style1}>{button1}</button>
+                  </Link>
+                  <Link to='/register'>
+                    <button className={style2}>{button2}</button>
+                  </Link>
               </div>
             </ul>
           </nav>

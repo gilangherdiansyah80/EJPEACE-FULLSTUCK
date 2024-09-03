@@ -58,7 +58,7 @@ const TestimoniAcademy = () => {
                     >
                         <i className="fas fa-arrow-left text-xl cursor-pointer text-black"></i>
                     </button>
-                    <div className="flex lg:grid lg:grid-cols-2 gap-2 w-full justify-center items-center">
+                    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-2 w-full justify-center items-center">
                         {paginatedTesti.map((item) => (
                             <div key={item.id} className={`flex flex-col justify-center items-center gap-y-5 ${isLeaving ? "opacity-0 translate-x-full" : ""}
                             ${isEntering ? "opacity-0 translate-x-[-100%]" : "opacity-100 translate-x-0"}`}>

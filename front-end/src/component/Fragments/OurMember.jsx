@@ -49,11 +49,11 @@ const OurMember = () => {
     return (
         <section className="flex flex-col gap-y-10 justify-center items-center">
             <h1 className="text-3xl lg:text-6xl font-bold text-center">Our Member</h1>
-            <div className="w-4/5 md:grid md:grid-cols-3 md:gap-3 gap-x-10 flex flex-col lg:gap-8 lg:grid-cols-6 p-3 mt-20">
+            <div className="w-full gap-y-5 md:grid md:grid-cols-3 md:gap-3 lg:gap-x-10 flex flex-col lg:gap-8 lg:grid-cols-6 p-3 md:mt-20">
                 {paginatedMember.map((item) => (
                     <div key={item.id} className={`${isLeaving ? "opacity-0 translate-x-full" : ""}
                     ${isEntering ? "opacity-0 translate-x-[-100%]" : "opacity-100 translate-x-0"}`}>
-                        <img src={item.image} className="rounded-xl h-[200px] w-[200px]" alt={item.name} />
+                        <img src={item.image} className="rounded-xl lg:h-[200px] lg:w-[200px]" alt={item.name} />
                     </div>
                 ))}
             </div>
