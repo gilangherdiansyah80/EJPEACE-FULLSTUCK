@@ -110,10 +110,10 @@ app.post('/api/v1/create-users', (req, res) => {
     const data = req.body;
     console.log(data);
     const id = Math.floor(Math.random() * 1000); // Generate random ID
-    const { username, password } = data;
+    const { name, username, telepon, email, password } = data;
 
-    let sql = `INSERT INTO users (user_id, username, password, role) VALUES (?, ?, ?, 'user')`;
-    let params = [id, username, password];
+    let sql = `INSERT INTO users (user_id, name, username, telepon, email, password, role) VALUES (?, ?, ?, ?, ?, ?, 'user')`;
+    let params = [id, name, username, telepon, email, password];
 
     db.query(sql, params, (err, result) => {
         if (err) {
