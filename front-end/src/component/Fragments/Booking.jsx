@@ -63,7 +63,7 @@ const Booking = () => {
 
     const sendBookingToBackend = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/create-transaction', {
+            const response = await fetch('http://localhost:3000/api/create-transaction/booking', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

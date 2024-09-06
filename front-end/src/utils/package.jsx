@@ -2,7 +2,7 @@ const Package = [
     {
         id: 1,
         image: "images/EJP-Creative.png",
-        name: "Paket A",
+        name: "Dance",
         deskripsi: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, suscipit! Cumque sapiente, neque odit voluptates culpa dolores iusto? Culpa aliquam magni explicabo fugit sed alias mollitia voluptatibus nostrum, reiciendis quos!`
     },
     {

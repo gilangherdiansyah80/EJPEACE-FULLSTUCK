@@ -38,6 +38,31 @@ app.get('/api/users', (req, res) => {
     });
 })
 
+app.get('/api/package', (req, res) => {
+    const sql = 'SELECT * FROM package';
+    db.query(sql, (err, result) => {
+        if( err ) {
+            response(500, null, 'Failed to retrieve package data', res);
+        } else {
+            response(200, result, 'Data From Table package', res);
+        }
+    })
+})
+
+app.get('/api/packageid/:id', (req, res) => {
+    const sql = 'SELECT * FROM package WHERE id_paket = ?';
+    const id = req.params.id;
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            response(500, null, 'Failed to retrieve package data', res);
+        } else if (result.length === 0) {
+            response(404, null, 'Package not found', res);
+        } else {
+            response(200, result, 'Data From Table package', res);
+        }
+    });
+});
+
 // Midtrans Snap API setup
 let snap = new midtransClient.Snap({
     isProduction: false, // Set to true if you want Production Environment (accept real transaction).
@@ -45,7 +70,7 @@ let snap = new midtransClient.Snap({
 });
 
 // Endpoint untuk membuat transaksi Midtrans
-app.post('/api/create-transaction', (req, res) => {
+app.post('/api/create-transaction/booking', (req, res) => {
     let { booking_id, total, name, email, phone, duration } = req.body;
 
     let parameter = {
@@ -74,6 +99,36 @@ app.post('/api/create-transaction', (req, res) => {
             // Transaction token
             let transactionToken = transaction.token;
             res.json({ transactionToken: transactionToken });
+        })
+        .catch((error) => {
+            res.status(500).json({ error: error.message });
+        });
+});
+
+app.post('/api/create-transaction/package', (req, res) => {
+    let { order_id, total, name, email, noTelepon, level } = req.body;
+    console.log(total)
+
+    let parameter = {
+        "transaction_details": {
+            "order_id": order_id,
+            "gross_amount": total
+        },
+        "credit_card": {
+            "secure": true
+        },
+        "customer_details": {
+            "name": name,
+            "email": email,
+            "phone": noTelepon
+        }
+    };
+
+    snap.createTransaction(parameter)
+        .then((transaction) => {
+            // Transaction token
+            let token = transaction.token;
+            res.json({ token: token });
         })
         .catch((error) => {
             res.status(500).json({ error: error.message });
@@ -125,6 +180,41 @@ app.post('/api/v1/create-users', (req, res) => {
         }
     });
 });
+
+app.post('/verify-user', (req, res) => {
+    const { userId } = req.body; // Ambil user_id dari request body
+
+    try {
+
+        
+        // Pastikan bahwa user_id dikirim dan bukan undefined atau null
+        if (!userId) {
+            return res.status(400).json({ message: 'User ID is required' });
+        }
+
+        // Eksekusi query ke database
+        const sql = 'SELECT * FROM users WHERE user_id = ?';
+        db.query(sql, [userId], (err, rows) => {
+            if (err) {
+                console.error('Error executing query:', err.message); // Log detail error
+                return res.status(500).json({ error: 'Error verifying user', details: err.message });
+            }// Log hasil dari query
+
+            // Periksa apakah pengguna ditemukan di database
+            if (rows.length === 0) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+
+            // Ambil data pengguna
+            const user = rows[0];
+            res.status(200).json({ user });
+        });
+    } catch (error) {
+        console.error('Error verifying user:', error.message); // Log detail error
+        res.status(500).json({ error: 'Error verifying user', details: error.message });
+    }
+});
+
 
 // Start server
 app.listen(port, () => {

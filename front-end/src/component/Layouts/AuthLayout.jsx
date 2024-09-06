@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2, button1, button2, hover}) => {
+const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2, button1, button2, hover, link1, link2, onClick}) => {
   const [open, setOpen] = useState(false);
 
   const handerOpen = () => setOpen(!open);
@@ -24,7 +24,7 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
       <header className={`${bgColor} h-28 lg:h-36 w-full flex justify-center items-center fixed top-0 left-0 z-10`}>
         <div className="flex justify-between items-center w-full px-5 lg:px-10 text-white">
           {/* Logo */}
-          <img className="w-52 lg:h-52 mt-5 lg:w-52" src="images/EJP-Creative.png" alt="EJ PEACE" />
+          <img className="w-52 lg:h-52 mt-5 lg:w-52" src="/images/EJP-Creative.png" alt="EJ PEACE" />
 
           {/* Mobile menu icon */}
           <div className="lg:hidden me-6">
@@ -59,12 +59,12 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
                 <a href="#contact" onClick={(e) => handleClick("contact", e)}>
                 <li onClick={handerOpen} className={`${hover}`}>{menu3}</li>
               </a>
-                <div className="flex gap-x-2">
-                  <Link to='/loginsection'>
+                <div className="flex gap-x-2 items-center">
+                  <Link to={link1}>
                     <button className={style1}>{button1}</button>
                   </Link>
-                  <Link to='/register'>
-                    <button className={style2}>{button2}</button>
+                  <Link to={link2}>
+                    <button className={style2} onClick={onClick}>{button2}</button>
                   </Link>
               </div>
               </ul>
@@ -86,12 +86,12 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
               <a href="#contact" onClick={(e) => handleClick("contact", e)}>
                 <li className={`${hover}`}>{menu3}</li>
               </a>
-              <div className="flex gap-x-2">
-                  <Link to='/loginsection'>
+              <div className="flex gap-x-2 items-center">
+                  <Link to={link1}>
                     <button className={style1}>{button1}</button>
                   </Link>
-                  <Link to='/register'>
-                    <button className={style2}>{button2}</button>
+                  <Link to={link2}>
+                    <button className={style2} onClick={onClick}>{button2}</button>
                   </Link>
               </div>
             </ul>
@@ -111,7 +111,7 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
           <i className="fab fa-instagram text-3xl lg:text-6xl hover:text-gradient-to-r from-pink-500 via-red-500 to-yellow-500"></i>
           <i className="fab fa-youtube text-3xl lg:text-6xl hover:text-red-700"></i>
         </div>
-        <img className="w-44 h-50 lg:w-[608px] lg:h-[304px]" src="images/EJP-Creative.png" alt="" />
+        <img className="w-44 h-50 lg:w-[608px] lg:h-[304px]" src="/images/EJP-Creative.png" alt="" />
       </footer>
     </div>
   );

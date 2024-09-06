@@ -8,6 +8,8 @@ import Academy from './pages/academy.jsx'
 import Squad from './pages/squad.jsx'
 import LoginSection from './pages/login.jsx'
 import Register from './pages/register.jsx'
+import AcademyUser from './pages/academyUser.jsx'
+import DetailPackage from './pages/detailPackage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
   {
     path: '/register',
     element: <Register />,
+  },
+  {
+    path: '/academyuser',
+    element: <AcademyUser />,
+  },
+  {
+    path: '/detailpackage/:id',
+    element: <DetailPackage />,
   },
 ])
 
