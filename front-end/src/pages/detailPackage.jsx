@@ -23,6 +23,12 @@ const DetailPackage = () => {
 
         // Mengambil data user dari localStorage
         const userDataFromStorage = JSON.parse(localStorage.getItem('user'));
+        if (userDataFromStorage) {
+            setUser(userDataFromStorage);
+        } else {
+            // Jika tidak ada data pengguna, redirect ke halaman login
+            window.location.href = "/loginsection"; // Ganti dengan rute login yang sesuai
+        }
 
         if (userDataFromStorage) {
             setUser(userDataFromStorage);
@@ -44,36 +50,6 @@ const DetailPackage = () => {
 
         fetchPackage();
     }, [id, endPoint]);
-
-    // Handle Checkout (Menyimpan pembayaran ke database)
-    // const  = async () => {
-    //     if (user && packageData) {
-    //         const paymentDetails = {
-    //             userId: user.id_user,
-    //             courseId: id,
-    //             paymentDetails: {
-    //                 nama: userData.nama,
-    //                 email: userData.email,
-    //                 noTelepon: userData.no_telepon,
-    //                 level: 1 // Level default
-    //             }
-    //         };
-
-    //         // Kirim permintaan checkout ke backend
-    //         await fetch('http://localhost:3000/checkout', {
-    //             method: 'POST',
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify(paymentDetails)
-    //         })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             if (data.message === 'Checkout successful') {
-    //                 alert('Pembayaran berhasil, silakan lanjutkan pembayaran.');
-    //             }
-    //         })
-    //         .catch(error => console.error('Error during checkout:', error));
-    //     }
-    // };
 
     // Trigger pop-up confirmation before logout
     const handleLogout = () => {
@@ -97,10 +73,16 @@ const DetailPackage = () => {
         return `ORDER-${uniqueId}`;
     }
 
-    // const calculateTotal = () => {
-    //     const total = packageData.harga;
-    //     return total;
-    // }
+    function addMonthToDate(startDate) {
+        // Membuat objek Date dari tanggal mulai
+        const date = new Date(startDate);
+        
+        // Menambahkan satu bulan ke tanggal mulai
+        date.setMonth(date.getMonth() + 1);
+        
+        // Mengembalikan tanggal selesai dalam format YYYY-MM-DD
+        return date.toISOString().slice(0, 10);
+    }
 
     const toggleCheckout = async () => {
         setHandleCheckout(!handleCheckout);
@@ -122,13 +104,42 @@ const DetailPackage = () => {
     
             const data = await response.json();
             window.snap.embed(data.token, {
-                embedId: 'snap-container'
+                embedId: 'snap-container',
+                onSuccess: function(result) {
+                    console.log('success');
+                    console.log(result);
+                    // Kirim data pembayaran ke backend dengan order_id yang benar
+                    fetch('http://localhost:3000/api/payment-package', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            user_id: userData.user_id,
+                            id_paket: id,
+                            tanggal_payment: new Date().toISOString().slice(0, 10),
+                            tanggal_selesai: addMonthToDate(new Date().toISOString().slice(0, 10)),
+                        }),
+                    }).then(response => response.text())
+                      .then(text => console.log('Backend response:', text))
+                      .catch(error => console.error('Error:', error));
+                },
+                onPending: function(result) {
+                    console.log('pending');
+                    console.log(result);
+                },
+                onError: function(result) {
+                    console.log('error');
+                    console.log(result);
+                },
+                onClose: function() {
+                    console.log('customer closed the popup without finishing the payment');
+                }
             });
         } catch (error) {
             console.error('An error occurred:', error);
         }
     };
-    
 
     useEffect(() => {
         const snapScript = 'https://app.sandbox.midtrans.com/snap/snap.js'
@@ -160,8 +171,7 @@ const DetailPackage = () => {
         <AuthLayout 
             bg={'bg-[#FBA9DB]'} 
             hover={'hover:text-[#DE4FC1]'} 
-            bgColor={'bg-[#3FD6EB]'} 
-            menu1={'Package'}  
+            bgColor={'bg-[#3FD6EB]'}  
             button1={user ? `Selamat Datang Tuan, ${user.username}` : 'Guest'} 
             button2={'Logout'} 
             style2={'p-3 bg-[#DE4FC1] text-white rounded-xl hover:bg-white hover:text-black'} 
@@ -197,6 +207,7 @@ const DetailPackage = () => {
                                         <h1>Paket : {data.nama_paket}</h1>
                                         <p>Harga : {data.harga}</p>
                                         <p>Level : 1</p>
+                                        <p>{data.id_paket}</p>
                                     </div>
                                 </div>
                             ))}
@@ -217,8 +228,6 @@ const DetailPackage = () => {
 
                     <section className={`rounded-lg ${handleCheckout ? 'w-full' : 'hidden'}`} id="snap-container"></section>
                 </div>
-
-                <a href="/courses/Estimasi Biaya.pdf" target="_blank">Download PDF</a>
 
                 {/* Pop-up logout confirmation */}
                 {popup && (

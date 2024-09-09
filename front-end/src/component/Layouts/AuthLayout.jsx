@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2, button1, button2, hover, link1, link2, onClick}) => {
+const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2, button1, button2, hover, link, link1, link2, onClick}) => {
   const [open, setOpen] = useState(false);
 
   const handerOpen = () => setOpen(!open);
@@ -45,11 +45,13 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
           {open && (
             <nav className="text-white lg:hidden bg-ejp w-full p-3 -ms-5 absolute z-10 mt-80">
               <ul className="flex flex-col gap-5 md:text-xl">
-              <a href="#home" onClick={(e) => handleClick("home", e)}>
-                  <li onClick={handerOpen} className={`${hover}`}>
-                    Home
-                  </li>
-                </a>
+                <Link to={link}>
+                  <a href="#home" onClick={(e) => handleClick("home", e)}>
+                    <li onClick={handerOpen} className={`${hover}`}>
+                      Home
+                    </li>
+                  </a>
+                </Link>
                 <a href="#about" onClick={(e) => handleClick("about", e)}>
                   <li onClick={handerOpen} className={`${hover}`}>{menu1}</li>
                 </a>
@@ -74,9 +76,11 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
           {/* Desktop Navigation */}
           <nav className="hidden lg:block">
             <ul className="flex gap-5 lg:gap-x-10 text-xl justify-center items-center">
-              <a href="#home" onClick={(e) => handleClick("home", e)}>
-                <li className={`${hover}`}>Home</li>
-              </a>
+              <Link to={link}>
+                <a href="#home" onClick={(e) => handleClick("home", e)}>
+                  <li className={`${hover}`}>Home</li>
+                </a>
+              </Link>
               <a href="#about" onClick={(e) => handleClick("about", e)}>
                 <li className={`${hover}`}>{menu1}</li>
               </a>

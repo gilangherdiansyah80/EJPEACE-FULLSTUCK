@@ -27,6 +27,17 @@ app.get('/api/booking', (req, res) => {
     });
 });
 
+app.get('/api/level', (req, res) => {
+    const sql = 'SELECT * FROM level';
+    db.query(sql, (err, result) => {
+        if(err) {
+            response(500, null, 'Failed to retrieve courses data', res);
+        } else {
+            response(200, result, 'Data From Table courses', res);
+        }
+    })
+})
+
 app.get('/api/users', (req, res) => {
     const sql = 'SELECT * FROM users';
     db.query(sql, (err, result) => {
@@ -62,6 +73,48 @@ app.get('/api/packageid/:id', (req, res) => {
         }
     });
 });
+
+app.get('/api/siswa/:userId', (req, res) => {
+    const { userId } = req.params;
+    const sql = 'SELECT id_paket FROM siswa WHERE user_id = ?';
+    db.query(sql, [userId], (err, result) => {
+        if (err) {
+            response(500, null, 'Failed to retrieve package data', res);
+        } else if (result.length === 0) {
+            response(404, null, 'Package not found', res);
+        } else {
+            response(200, result, 'Data From Table package', res);
+        }
+    });
+});
+
+app.get('/api/levelcourse/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = 'SELECT l.* FROM courses c JOIN level l ON c.id_level = l.id_level WHERE id_paket = ?';
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            response(500, null, 'Failed to retrieve package data', res);
+        } else if (result.length === 0) {
+            response(404, null, 'Package not found', res);
+        } else {
+            response(200, result, 'Data From Table package', res);
+        }
+    })
+})
+
+app.get('/api/course/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = 'SELECT * FROM courses WHERE id_level = ?';
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            response(500, null, 'Failed to retrieve package data', res);
+        } else if (result.length === 0) {
+            response(404, null, 'Package not found', res);
+        } else {
+            response(200, result, 'Data From Table package', res);
+        }
+    })
+})
 
 // Midtrans Snap API setup
 let snap = new midtransClient.Snap({
@@ -160,15 +213,38 @@ app.post('/api/payment-notification', (req, res) => {
     });
 });
 
+// Endpoint POST untuk membuat payments baru
+app.post('/api/payment-package', (req, res) => {
+    const data = req.body;
+    console.log('Received payment data:', data);  // Log data yang diterima
+
+    const { user_id, id_paket, tanggal_payment, tanggal_selesai } = data;
+
+    let sql = `INSERT INTO siswa (user_id, id_paket, tanggal_payment, tanggal_selesai) VALUES (?, ?, ?, ?)`;
+
+    let params = [ 
+        user_id, id_paket, tanggal_payment, tanggal_selesai
+    ]; 
+   
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            console.error('Failed to insert payment record', err);
+            res.status(500).json({ error: 'Failed to insert payment record' });
+        } else {
+            console.log('Payment record inserted successfully');
+            res.status(200).send('OK');
+        }
+    });
+});
+
 // Endpoint POST untuk membuat user baru
 app.post('/api/v1/create-users', (req, res) => {
     const data = req.body;
     console.log(data);
-    const id = Math.floor(Math.random() * 1000); // Generate random ID
     const { name, username, telepon, email, password } = data;
 
-    let sql = `INSERT INTO users (user_id, name, username, telepon, email, password, role) VALUES (?, ?, ?, ?, ?, ?, 'user')`;
-    let params = [id, name, username, telepon, email, password];
+    let sql = `INSERT INTO users (name, username, telepon, email, password, role) VALUES (?, ?, ?, ?, ?, 'user')`;
+    let params = [name, username, telepon, email, password];
 
     db.query(sql, params, (err, result) => {
         if (err) {

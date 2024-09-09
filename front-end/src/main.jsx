@@ -10,6 +10,8 @@ import LoginSection from './pages/login.jsx'
 import Register from './pages/register.jsx'
 import AcademyUser from './pages/academyUser.jsx'
 import DetailPackage from './pages/detailPackage.jsx'
+import AcademyLevel from './pages/academyLevel.jsx'
+import AcademyCourse from './pages/academyCourse.jsx'
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
   {
     path: '/detailpackage/:id',
     element: <DetailPackage />,
+  },
+  {
+    path: '/academylevel/:id',
+    element: <AcademyLevel />,
+  },
+  {
+    path: '/academycourse/:id',
+    element: <AcademyCourse />,
   },
 ])
 

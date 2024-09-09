@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
+const roles = ["Creator", "Dance", "Acting"];
 
 const Register = () => {
   const [dataRegister, setDataRegister] = useState({
@@ -15,7 +17,31 @@ const Register = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popupMessage, setPopupMessage] = useState(""); // Menambahkan state untuk pesan pop-up
   const [isSuccess, setIsSuccess] = useState(false); // Menambahkan state untuk status sukses atau gagal
+  const [text, setText] = useState("");
+  const [index, setIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
 
+  useEffect(() => {
+      let typingSpeed = 500;
+      if (isDeleting) {
+        typingSpeed /= 2;
+      }
+    
+      const handleTyping = () => {
+        const fullText = roles[index];
+        setText(isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1));
+      
+        if (!isDeleting && text === fullText) {
+          setTimeout(() => setIsDeleting(true), 2000);
+        } else if (isDeleting && text === '') {
+          setIsDeleting(false);
+          setIndex((prevIndex) => (prevIndex + 1) % roles.length);
+        }
+      };
+    
+      const typingTimeout = setTimeout(handleTyping, typingSpeed);
+      return () => clearTimeout(typingTimeout);
+  }, [text, isDeleting, index]);
   const handleRegister = async (e) => {
     e.preventDefault();
 
@@ -117,13 +143,13 @@ const Register = () => {
             <li>
               <Link to="/academy">Help</Link>
             </li>
-          </ul>
+          </ul>  
         </nav>
       </header>
       <main className="w-full lg:w-2/3 flex flex-col gap-y-14 md:gap-y-28 lg:flex-row-reverse justify-center items-center lg:justify-center lg:items-center lg:gap-x-10">
         <section className="w-full flex flex-col justify-center items-center lg:w-1/2">
-          <h1 className="text-white font-bold font-helvetica text-4xl md:text-6xl">
-            ACTING <span className="block">CLASS</span>
+          <h1 className="text-white font-bold font-helvetica text-4xl md:text-6xl text-center">
+            {text} <span className="block">Class</span>
           </h1>
         </section>
 

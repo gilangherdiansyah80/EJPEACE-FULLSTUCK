@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+const roles = ["Creator", "Dance", "Acting"];
+
 const LoginSection = () => {
     const [dataUsers, setDataUsers] = useState([]);
     const [dataLogin, setDataLogin] = useState({
@@ -13,6 +15,31 @@ const LoginSection = () => {
         isSuccess: false,
     });
     const [redirectTo, setRedirectTo] = useState("");
+    const [text, setText] = useState("");
+    const [index, setIndex] = useState(0);
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    useEffect(() => {
+        let typingSpeed = 500;
+        if (isDeleting) {
+          typingSpeed /= 2;
+        }
+    
+        const handleTyping = () => {
+          const fullText = roles[index];
+          setText(isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1));
+    
+          if (!isDeleting && text === fullText) {
+            setTimeout(() => setIsDeleting(true), 2000);
+          } else if (isDeleting && text === '') {
+            setIsDeleting(false);
+            setIndex((prevIndex) => (prevIndex + 1) % roles.length);
+          }
+        };
+    
+        const typingTimeout = setTimeout(handleTyping, typingSpeed);
+        return () => clearTimeout(typingTimeout);
+      }, [text, isDeleting, index]);
 
     const endPoint = 'http://localhost:3000/api/users';
     const navigate = useNavigate();
@@ -81,7 +108,7 @@ const LoginSection = () => {
             </header>
             <main className="w-full lg:w-2/3 flex flex-col gap-y-14 md:gap-y-48 lg:flex-row-reverse justify-center items-center lg:justify-between">
                 <section className="w-full flex flex-col justify-center items-center">
-                    <h1 className="text-white font-bold font-helvetica text-4xl md:text-6xl text-center lg:text-8xl">ACTING <span className="block">CLASS</span></h1>
+                    <h1 className="text-white font-bold font-helvetica text-4xl md:text-6xl text-center lg:text-8xl">{text} <span className="block">Class</span></h1>
                 </section>
                 
                 {/* form login */}
