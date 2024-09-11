@@ -47,7 +47,7 @@ const router = createBrowserRouter([
     element: <DetailPackage />,
   },
   {
-    path: '/academylevel/:id',
+    path: '/academylevel',
     element: <AcademyLevel />,
   },
   {

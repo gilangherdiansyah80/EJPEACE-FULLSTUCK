@@ -88,6 +88,7 @@ app.get('/api/siswa/:userId', (req, res) => {
     });
 });
 
+// endpoint untuk menampilkan level
 app.get('/api/levelcourse/:id', (req, res) => {
     const id = req.params.id;
     const sql = 'SELECT l.* FROM courses c JOIN level l ON c.id_level = l.id_level WHERE id_paket = ?';
@@ -102,6 +103,19 @@ app.get('/api/levelcourse/:id', (req, res) => {
     })
 })
 
+// endpoint untuk menampilkan level
+app.get('/api/level', (req, res) => {
+    const sql = 'SELECT * FROM level';
+    ddb.query(sql, (err, result) => {
+        if (err) {
+            response(500, null, 'Failed to retrieve package data', res);
+        } else {
+            response(200, result, 'Data From Table package', res);
+        }
+    })
+})
+
+// endpoint untuk menampilkan course
 app.get('/api/course/:id', (req, res) => {
     const id = req.params.id;
     const sql = 'SELECT * FROM courses WHERE id_level = ?';
