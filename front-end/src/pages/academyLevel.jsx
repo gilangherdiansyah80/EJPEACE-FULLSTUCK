@@ -1,27 +1,36 @@
 import { useState, useEffect } from 'react';
 import AuthLayout from '../component/Layouts/AuthLayout';
 import Card from '../component/Elements/Card';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 
 const AcademyLevel = () => {
     const [popup, setPopup] = useState(false);
     const [user, setUser] = useState(null);
     const [dataLevel, setdataLevel] = useState([]);
+    const [level, setLevel] = useState([]);
+    const { id } = useParams();
 
     // State untuk bulan dan tahun
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
     const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
-    const endPoint = `http://localhost:3000/api/level`;
-    console.log(endPoint)
+    const endPointLevel = `http://localhost:3000/api/levelcourse/${id}`;
 
+    const endPoint = 'http://localhost:3000/api/level';
     
     useEffect(() => {
         const getPackage = async () => {
             const response = await fetch(endPoint);
             const data = await response.json();
             setdataLevel(data.payload.datas);
+            console.log(data.payload.datas)
+        }
+
+        const getPackageLevel = async () => {
+            const response = await fetch(endPointLevel);
+            const data = await response.json();
+            setLevel(data.payload.datas);
             console.log(data.payload.datas)
         }
         // Ambil data pengguna dari localStorage
@@ -35,7 +44,8 @@ const AcademyLevel = () => {
         }
 
         getPackage();
-    }, [endPoint]);
+        getPackageLevel();
+    }, [endPoint, endPointLevel]);
 
     // Fungsi untuk menghitung jumlah hari dalam bulan yang ditentukan
     const daysInMonth = (month, year) => {
@@ -158,16 +168,16 @@ const AcademyLevel = () => {
                 <section className="mb-52 flex flex-col gap-y-7">
                     <h1 className="text-center text-4xl md:text-6xl font-bold">Level</h1>
                     <div className="md:grid md:grid-cols-2 md:gap-3 flex flex-col gap-y-3 lg:grid-cols-3">
-                        {dataLevel?.map((item) => (
+                        {level && dataLevel?.map((item) => (
                             <Card 
-                                key={item.id_level} 
+                                key={item.id_course} 
                                 style={`w-full bg-white text-black shadow-2xl rounded-lg flex flex-col gap-3 p-3`}
                                 src={item.img_url}  
                                 name={item.level}
                                 className={'flex flex-col gap-y-3'} 
                                 bgImage={'bg-gray-300'}
                             >
-                                <Link to={`/academycourse/${item.id_level}`}>
+                                <Link to={`/academycourse/${item.id_level}/${item.id_level}`}>
                                 <button className="bg-[#FBA9DB] rounded-lg justify-center text-black p-2 flex gap-3 font-swiss w-full">
                                     Masuk
                                     <span>

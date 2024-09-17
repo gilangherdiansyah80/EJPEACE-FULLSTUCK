@@ -6,14 +6,14 @@ const AcademyCourse = () => {
     const [popup, setPopup] = useState(false);
     const [user, setUser] = useState(null);
     const [dataCourse, setDataCourse] = useState([]);
-    const { id } = useParams();
+    const { id_level, id_paket } = useParams();
     const [arrow, setArrow] = useState([]);
     
     // State untuk bulan dan tahun
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
     const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
-    const endPoint = `http://localhost:3000/api/course/${id}`;
+    const endPoint = `http://localhost:3000/api/course/${id_level}/${id_paket}`;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -31,7 +31,7 @@ const AcademyCourse = () => {
         }
 
         fetchData();
-    }, [id, endPoint]);
+    }, [id_level, id_paket, endPoint]);
 
     // Fungsi untuk menghitung jumlah hari dalam bulan yang ditentukan
     const daysInMonth = (month, year) => {
@@ -162,9 +162,9 @@ const AcademyCourse = () => {
                                     <h1 className='text-xl font-semibold'>{item.course_name}</h1>
                                     <div>
                                         {arrow.includes(item.id_course) ? (
-                                            <i className='fas fa-arrow-turn-down'></i>
+                                            <i className='fas fa-chevron-down'></i>
                                         ) : (
-                                            <i className='fas fa-arrow-turn-up'></i>
+                                            <i className='fas fa-chevron-up'></i>
                                         )}
                                     </div>
                                 </div>

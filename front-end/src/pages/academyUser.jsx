@@ -94,7 +94,7 @@ const AcademyUser = () => {
                                     className="flex flex-col gap-y-3"
                                     bgImage="bg-gray-300"
                                 >
-                                    <Link to={isPurchased ? `/academylevel` : `/detailpackage/${item.id_paket}`}>
+                                    <Link to={isPurchased ? `/academylevel/${item.id_paket}` : `/detailpackage/${item.id_paket}`}>
                                         <button className="bg-[#FBA9DB] rounded-lg justify-center text-black p-2 flex gap-3 font-swiss w-full">
                                             {isPurchased ? 'Masuk Kelas' : 'Beli'}
                                             <span>

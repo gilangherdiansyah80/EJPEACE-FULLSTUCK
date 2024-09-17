@@ -47,11 +47,11 @@ const router = createBrowserRouter([
     element: <DetailPackage />,
   },
   {
-    path: '/academylevel',
+    path: '/academylevel/:id',
     element: <AcademyLevel />,
   },
   {
-    path: '/academycourse/:id',
+    path: '/academycourse/:id_level/:id_paket',
     element: <AcademyCourse />,
   },
 ])
