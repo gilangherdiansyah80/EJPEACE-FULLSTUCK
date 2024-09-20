@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 // eslint-disable-next-line react/prop-types
 const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2, button1, button2, hover, link, link1, link2, onClick}) => {
+  AOS.init();
+
   const [open, setOpen] = useState(false);
 
   const handerOpen = () => setOpen(!open);
@@ -20,9 +24,9 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
   };
 
   return (
-    <div className={`w-full ${bg} overflow-hidden`}>
-      <header className={`${bgColor} h-28 lg:h-36 w-full flex justify-center items-center fixed top-0 left-0 z-10`}>
-        <div className="flex justify-between items-center w-full px-5 lg:px-10 text-white">
+    <div className={`w-full ${bg} overflow-hidden lg:flex lg:flex-col lg:justify-between lg:items-center`}>
+      <header className={`${bgColor} h-28 lg:h-36 w-full flex justify-center items-center fixed top-0 left-0 z-10`} data-aos="fade-down" data-aos-delay="100">
+        <div className="flex justify-between items-center w-full lg:w-3/4 px-5 lg:px-10 text-white">
           {/* Logo */}
           <img className="w-52 lg:h-52 mt-5 lg:w-52" src="/images/EJP-Creative.png" alt="EJ PEACE" />
 
@@ -75,7 +79,7 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:block">
-            <ul className="flex gap-5 lg:gap-x-10 text-xl justify-center items-center">
+            <ul className="flex gap-5 lg:gap-x-10 text-xl justify-between items-center">
               <Link to={link}>
                 <a href="#home" onClick={(e) => handleClick("home", e)}>
                   <li className={`${hover}`}>Home</li>
@@ -106,16 +110,18 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
 
       {children}
 
-      <footer className={`${bgColor} text-white flex flex-col p-3 gap-y-3 lg:gap-y-10 justify-center items-center w-full absolute`}>
+      <footer className={`${bgColor} text-white flex flex-col p-3 gap-y-3 lg:gap-y-10 justify-between items-center w-full`}>
         <h1 className="text-2xl lg:text-4xl font-semibold text-white font-helvetica">Sosial Media</h1>
         <div className="flex gap-3 lg:gap-x-10">
-          <i className="fab fa-facebook text-3xl lg:text-6xl hover:text-blue-600"></i>
-          <i className="fab fa-tiktok text-3xl lg:text-6xl hover:text-yellowejp"></i>
-          <i className="fab fa-twitter text-3xl lg:text-6xl hover:text-blue-600"></i>
-          <i className="fab fa-instagram text-3xl lg:text-6xl hover:text-gradient-to-r from-pink-500 via-red-500 to-yellow-500"></i>
-          <i className="fab fa-youtube text-3xl lg:text-6xl hover:text-red-700"></i>
+          <img src="/images/facebook.png" className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0" alt="Facebook" />
+          <img src="/images/tiktok.png" className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0" alt="Tiktok" />
+          <img src="/images/twitter.png" className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0" alt="Twitter" />
+          <img src="/images/instagram.png" className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0" alt="Instagram" />
+          <img src="/images/youtube.png" className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0" alt="Youtube" />
         </div>
-        <img className="w-44 h-50 lg:w-[608px] lg:h-[304px]" src="/images/EJP-Creative.png" alt="" />
+        <div className="h-24 flex justify-center items-center">
+          <img className="w-52 h-50 lg:h-52 lg:w-52" src="/images/EJP-Creative.png" alt="" />
+        </div>
       </footer>
     </div>
   );

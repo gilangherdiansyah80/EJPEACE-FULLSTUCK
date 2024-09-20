@@ -57,7 +57,7 @@ const ProgramKerja = () => {
                 </div>
 
                 {/* Pagination */}
-                <div className="flex justify-center items-center rounded-lg gap-x-3 p-3 shadow-xl lg:mt-10">
+                <div className="flex justify-center items-center rounded-lg gap-x-3 p-3 lg:mt-10">
                     <button
                         onClick={() => handlePageClick(currentPage - 1)}
                         disabled={currentPage === 1}
@@ -72,7 +72,7 @@ const ProgramKerja = () => {
                             <button
                                 key={index}
                                 onClick={() => handlePageClick(index + 1)}
-                                className={`lg:text-2xl font-swiss ${currentPage === index + 1 ? 'bg-yellowejp px-2 lg:p-3 rounded-md' : ''}`}
+                                className={`lg:text-2xl font-swiss ${currentPage === index + 1 ? 'bg-black px-3 py-1 text-white rounded-md' : ''}`}
                             >
                                 {index + 1}
                             </button>

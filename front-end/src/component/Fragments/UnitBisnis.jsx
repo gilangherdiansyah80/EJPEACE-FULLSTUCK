@@ -6,8 +6,8 @@ const UnitBisnis = () => {
     return (
         <Fragment>
             <section className="flex flex-col gap-3">
-          <h1 className="text-3xl font-bold mb-5 lg:text-6xl lg:mb-20 font-helvetica">Unit Bisnis</h1>
-          <p className="lg:text-xl font-swiss">
+          <h1 className="text-3xl font-bold mb-5 lg:text-6xl lg:mb-16 font-helvetica" data-aos="fade-down">Unit Bisnis</h1>
+          <p className="lg:text-xl font-swiss" data-aos="fade-down">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo,
             temporibus culpa, ipsa corporis porro id et harum in laborum tempora
             vitae sed fugit rerum numquam? Laborum, temporibus molestias.

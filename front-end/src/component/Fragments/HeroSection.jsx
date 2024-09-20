@@ -24,7 +24,7 @@ const HeroSection = ( {children}) => {
     }, []);
     return (
         <Fragment>
-        <section className="flex flex-col gap-3">
+        <section className="flex flex-col gap-3" data-aos="zoom-in" data-aos-duration="1000">
           <Hero rounded={"rounded-xl"} src={slides[currentSlide].image} title={slides[currentSlide].title} subtitle={slides[currentSlide].subtitle} description={slides[currentSlide].description} buttonText={slides[currentSlide].buttonText} buttonStyle={'bg-yellowejp rounded-lg w-28 text-black h-10 p-2'}>
             <div className="flex justify-between items-center mt-3">
               <button

@@ -6,6 +6,7 @@ const Card = ( {key, className, image, src, style, name, deskripsi, children, li
             <div
               key={key}
               className={`w-full ${color} shadow-2xl rounded-xl flex flex-col gap-3 ${padding} ${style}`}
+              data-aos="flip-right"
             >
               <div className={`rounded-xl ${bgImage}`}>
                 <img src={src} className={image} alt="" />
