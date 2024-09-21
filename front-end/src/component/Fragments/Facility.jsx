@@ -5,7 +5,7 @@ import OurFacility from "../../utils/facility"
 const Facility = () => {
     return (
         <Fragment>
-            <section className="p-3 lg:px-10 flex flex-col">
+            <section className="p-3 lg:px-10 lg:w-3/4 self-center flex flex-col">
                 <h1 className="text-3xl font-bold mb-5 text-center lg:text-6xl lg:mb-20 font-helvetica">Our Facility</h1>
                 <div className="flex flex-col gap-y-5">
                     <article className="text-center">

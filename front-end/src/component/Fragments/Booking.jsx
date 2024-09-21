@@ -143,7 +143,7 @@ const Booking = () => {
     }, [])
 
     return (
-        <section className="p-3 lg:px-10 flex flex-col gap-y-5">
+        <section className="p-3 lg:px-10 lg:w-3/4 lg:self-center flex flex-col gap-y-5">
             <h1 className="text-center font-bold text-2xl lg:text-6xl lg:mb-20">Jadwal Booking</h1>
             <DynamicWeekCalendar />
             <div className="flex flex-col lg:flex-row lg:gap-x-3 gap-y-3">
@@ -219,7 +219,14 @@ const Booking = () => {
                 </section>
 
                 <section className="bg-ejp p-3 w-full flex flex-col gap-y-3 rounded-md text-white">
-                    <img src="/images/map1.jpg" className="rounded-md lg:w-full lg:h-full" alt="Map" />
+                    <div>
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.5629603064754!2d107.62087617573967!3d-6.942717967966481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e862246d4d8b%3A0xe9bef92e40558057!2sJl.%20Mutumanikam%20No.69%2C%20Cijagra%2C%20Kec.%20Lengkong%2C%20Kota%20Bandung%2C%20Jawa%20Barat%2040265!5e0!3m2!1sid!2sid!4v1726916438232!5m2!1sid!2sid" 
+                            allowFullScreen 
+                            loading="lazy" 
+                            className="rounded-md w-full h-80 md:h-[574px]" 
+                            title="Our Location" />
+                    </div>
                     <div className="text-center flex flex-col gap-y-3">
                         <h2 className="font-semibold text-xl">Our Location</h2>
                         <article>Jl. Mutumanikam No.69, Cijagra, Kec. Lengkong, Kota Bandung, Jawa Barat 40265</article>
@@ -232,7 +239,7 @@ const Booking = () => {
                 <div id="contact"></div>
             </div>
 
-            <BackToMain />
+            <BackToMain bgColor={'bg-ejp'} />
         </section>
     );
 };

@@ -5,6 +5,7 @@ import Card from "../Elements/Card.jsx";
 const ProgramKerja = () => {
     const [currentCategory, setCurrentCategory] = useState("All");
     const [currentPage, setCurrentPage] = useState(1);
+    const [isCategoryActive, setIsCategoryActive] = useState('All');
 
     const itemsPerPage = 6;
 
@@ -23,6 +24,7 @@ const ProgramKerja = () => {
 
     const handleCategoryClick = (category) => {
         setCurrentCategory(category);
+        setIsCategoryActive(category);
         setCurrentPage(1); // Reset halaman ke 1 ketika kategori berubah
     };
 
@@ -35,12 +37,12 @@ const ProgramKerja = () => {
             <section className="flex flex-col gap-3">
                 <h1 className="text-3xl font-bold mb-5 lg:text-6xl lg:mb-28 font-helvetica">Program Kegiatan</h1>
                 <div className="flex gap-2 justify-center flex-wrap lg:mb-10">
-                    <button onClick={() => handleCategoryClick("All")} className="border-2 border-black text-black px-3 py-1 rounded-lg font-swiss">All</button>
-                    <button onClick={() => handleCategoryClick("Squad")} className="border-2 border-black text-black px-3 py-1 rounded-lg font-swiss">Squad</button>
-                    <button onClick={() => handleCategoryClick("Coffee")} className="border-2 border-black text-black px-3 py-1 rounded-lg font-swiss">Coffee</button>
-                    <button onClick={() => handleCategoryClick("Studio")} className="border-2 border-black text-black px-3 py-1 rounded-lg font-swiss">Studio</button>
-                    <button onClick={() => handleCategoryClick("Academy")} className="border-2 border-black text-black px-3 py-1 rounded-lg font-swiss">Academy</button>
-                    <button onClick={() => handleCategoryClick("Entertaiment")} className="border-2 border-black text-black px-3 py-1 rounded-lg font-swiss">Entertaiment</button>
+                    <button onClick={() => handleCategoryClick("All")} className={`border-2 border-black text-black px-3 py-1 lg:py-2 rounded-lg font-swiss cursor-pointer ${isCategoryActive === 'All' ? 'bg-yellowejp text-ejp' : ''}`}>All</button>
+                    <button onClick={() => handleCategoryClick("Squad")} className={`border-2 border-black text-black px-3 py-1 lg:py-2 rounded-lg font-swiss cursor-pointer ${isCategoryActive === 'Squad' ? 'bg-yellowejp text-ejp' : ''}`}>Squad</button>
+                    <button onClick={() => handleCategoryClick("Coffee")} className={`border-2 border-black text-black px-3 py-1 lg:py-2 rounded-lg font-swiss cursor-pointer ${isCategoryActive === 'Coffee' ? 'bg-yellowejp text-ejp' : ''}`}>Coffee</button>
+                    <button onClick={() => handleCategoryClick("Studio")} className={`border-2 border-black text-black px-3 py-1 lg:py-2 rounded-lg font-swiss cursor-pointer ${isCategoryActive === 'Studio' ? 'bg-yellowejp text-ejp' : ''}`}>Studio</button>
+                    <button onClick={() => handleCategoryClick("Academy")} className={`border-2 border-black text-black px-3 py-1 lg:py-2 rounded-lg font-swiss cursor-pointer ${isCategoryActive === 'Academy' ? 'bg-yellowejp text-ejp' : ''}`}>Academy</button>
+                    <button onClick={() => handleCategoryClick("Entertaiment")} className={`border-2 border-black text-black px-3 py-1 lg:py-2 rounded-lg font-swiss cursor-pointer ${isCategoryActive === 'Entertaiment' ? 'bg-yellowejp text-ejp' : ''}`}>Entertaiment</button>
                 </div>
 
                 <div className="md:grid md:grid-cols-2 lg:grid-cols-3 md:grid-rows-2 flex flex-col gap-y-3 md:gap-3 lg:gap-5">
