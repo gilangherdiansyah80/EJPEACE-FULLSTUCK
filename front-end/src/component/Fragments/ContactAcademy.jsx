@@ -3,7 +3,7 @@ const ContactAcademy = () => {
         <section className="shadow-xl mt-24">
                     <div className='w-full flex bg-white h-52 flex-col justify-center items-center rounded-t-lg lg:h-[683px]'>
                         <img
-                            className="opacity-50 object-cover rounded-xl lg:w-full lg:h-full absolute"
+                            className="opacity-50 object-cover rounded-xl lg:w-1/2 lg:h-full absolute"
                             src='/images/image1.png'
                             alt="Slide"
                         />

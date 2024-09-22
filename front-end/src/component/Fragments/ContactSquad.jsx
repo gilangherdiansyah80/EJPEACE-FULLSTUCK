@@ -3,7 +3,7 @@ const ContactSquad = () => {
         <section className="shadow-xl mt-24">
                     <div className='w-full flex bg-white h-52 flex-col justify-center items-center rounded-t-lg lg:h-[683px]'>
                         <img
-                            className="opacity-50 object-cover rounded-xl lg:w-full lg:h-full absolute"
+                            className="opacity-50 object-cover rounded-xl lg:w-1/2 lg:h-full absolute"
                             src='/images/image1.png'
                             alt="Slide"
                         />
@@ -20,7 +20,7 @@ const ContactSquad = () => {
                                     <h1 className="lg:text-3xl font-bold text-[#FB7316]">Alamat</h1>
                                 </div>
                                 <p className="text-center">Jl. Sritunggal No.4, Cigereleng, Kec. Regol, Kota Bandung, Jawa Barat 40253</p>
-                                <button className="bg-[#FB7316] p-2 rounded-md">Kunjungi</button>
+                                <button className="bg-[#FB7316] p-2 rounded-md text-white">Kunjungi</button>
                             </div>
                         </div>
                         <div className="bg-white flex justify-center items-center rounded-lg p-3 gap-y-3 md:w-[400px] md:h-[441px]">
@@ -29,7 +29,7 @@ const ContactSquad = () => {
                                     <i className="fab fa-whatsapp text-6xl text-[#FB7316]"></i>
                                     <h1 className="lg:text-3xl font-bold text-[#FB7316]">Whatsapp</h1>
                                 </div>
-                                <button className="bg-[#FB7316] rounded-md p-2">Hubungi</button>
+                                <button className="bg-[#FB7316] rounded-md p-2 text-white">Hubungi</button>
                             </div>
                         </div>
                         <div className="bg-white flex justify-center items-center rounded-lg p-3 gap-y-3 md:w-[400px] md:h-[441px]">
@@ -38,7 +38,7 @@ const ContactSquad = () => {
                                     <i className="far fa-envelope text-6xl text-[#FB7316]"></i>
                                     <h1 className="lg:text-3xl font-bold text-[#FB7316]">Email</h1>
                                 </div>
-                                <button className="bg-[#FB7316] rounded-md p-2">Hubungi</button>
+                                <button className="bg-[#FB7316] text-white rounded-md p-2">Hubungi</button>
                             </div>
                         </div>
                     </div>  

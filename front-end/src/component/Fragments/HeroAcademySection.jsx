@@ -61,7 +61,7 @@ const HeroAcademySection = () => {
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium nisi facere sapiente quibusdam vitae minima rem omnis? Id officiis animi sint. Numquam ad exercitationem natus maiores voluptates ullam sint ab praesentium est soluta veniam dolore non saepe nam, iste accusamus odio quam quidem harum vitae? Tempora deserunt asperiores pariatur sequi.
                 </article>
                 <button className="p-3 lg:px-7 bg-ejp text-white lg:py-2 rounded-md w-36 self-center">Learn More</button>
-                    </section>
+            </section>
         </Fragment>
     )
 }

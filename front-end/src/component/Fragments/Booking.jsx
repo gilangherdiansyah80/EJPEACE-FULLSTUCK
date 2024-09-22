@@ -238,7 +238,6 @@ const Booking = () => {
 
                 <div id="contact"></div>
             </div>
-
             <BackToMain bgColor={'bg-ejp'} />
         </section>
     );

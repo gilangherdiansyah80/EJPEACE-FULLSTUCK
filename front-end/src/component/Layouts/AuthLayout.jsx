@@ -4,7 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 // eslint-disable-next-line react/prop-types
-const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2, button1, button2, hover, link, link1, link2, onClick}) => {
+const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2, button1, button2, hover, link, link1, link2, onClick, menuActive}) => {
   AOS.init();
 
   const [open, setOpen] = useState(false);
@@ -53,19 +53,19 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
               <ul className="flex flex-col gap-5 md:text-xl">
                 <Link to={link}>
                   <a href="#home" onClick={(e) => handleClick("home", e)}>
-                    <li onClick={handerOpen} className={`${hover} ${activeMenu === 'home' ? 'bg-yellowejp text-ejp rounded-lg p-3' : ''}`}>
+                    <li onClick={handerOpen} className={`${hover} ${activeMenu === 'home' ? `${menuActive} rounded-lg p-3` : ''}`}>
                       Home
                     </li>
                   </a>
                 </Link>
                 <a href="#about" onClick={(e) => handleClick("about", e)}>
-                  <li onClick={handerOpen} className={`${hover} ${activeMenu === 'about' ? 'bg-yellowejp text-ejp rounded-lg p-3' : ''}`}>{menu1}</li>
+                  <li onClick={handerOpen} className={`${hover} ${activeMenu === 'about' ? `${menuActive} p-3 rounded-lg` : ''}`}>{menu1}</li>
                 </a>
                 <a href="#unitBisnis" onClick={(e) => handleClick("unitBisnis", e)}>
-                  <li onClick={handerOpen} className={`${hover} ${activeMenu === 'unitBisnis' ? 'bg-yellowejp text-ejp rounded-lg p-3' : ''}`}>{menu2}</li>
+                  <li onClick={handerOpen} className={`${hover} ${activeMenu === 'unitBisnis' ? `${menuActive} p-3 rounded-lg` : ''}`}>{menu2}</li>
                 </a>
                 <a href="#contact" onClick={(e) => handleClick("contact", e)}>
-                <li onClick={handerOpen} className={`${hover} ${activeMenu === 'contact' ? 'bg-yellowejp text-ejp rounded-lg p-3' : ''}`}>{menu3}</li>
+                <li onClick={handerOpen} className={`${hover} ${activeMenu === 'contact' ? `${menuActive} p-3 rounded-lg` : ''}`}>{menu3}</li>
               </a>
                 <div className="flex gap-x-2 items-center">
                   <Link to={link1}>
@@ -84,17 +84,17 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
             <ul className="flex gap-5 lg:gap-x-10 text-xl justify-between items-center">
               <Link to={link}>
                 <a href="#home" onClick={(e) => handleClick("home", e)}>
-                  <li className={`${hover} ${activeMenu === 'home' ? 'bg-yellowejp text-ejp p-3 rounded-lg' : ''}`}>Home</li>
+                  <li className={`${hover} ${activeMenu === 'home' ? `${menuActive} p-3 rounded-lg` : ''}`}>Home</li>
                 </a>
               </Link>
               <a href="#about" onClick={(e) => handleClick("about", e)}>
-                <li className={`${hover} ${activeMenu === 'about' ? 'bg-yellowejp text-ejp p-3 rounded-lg' : ''}`}>{menu1}</li>
+                <li className={`${hover} ${activeMenu === 'about' ? `${menuActive} p-3 rounded-lg` : ''}`}>{menu1}</li>
               </a>
               <a href="#unitBisnis" onClick={(e) => handleClick("unitBisnis", e)}>
-                <li className={`${hover} ${activeMenu === 'unitBisnis' ? 'bg-yellowejp text-ejp p-3 rounded-lg' : ''}`}>{menu2}</li>
+                <li className={`${hover} ${activeMenu === 'unitBisnis' ? `${menuActive} p-3 rounded-lg` : ''}`}>{menu2}</li>
               </a>
               <a href="#contact" onClick={(e) => handleClick("contact", e)}>
-                <li className={`${hover} ${activeMenu === 'contact' ? 'bg-yellowejp text-ejp p-3 rounded-lg' : ''}`}>{menu3}</li>
+                <li className={`${hover} ${activeMenu === 'contact' ? `${menuActive} p-3 rounded-lg` : ''}`}>{menu3}</li>
               </a>
               <div className="flex gap-x-2 items-center">
                   <Link to={link1}>
@@ -109,7 +109,6 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
         </div>
       </header>
 
-
       {children}
 
       <footer className={`${bgColor} text-white flex flex-col p-3 gap-y-3 lg:gap-y-10 justify-between items-center w-full`}>
@@ -121,9 +120,7 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
           <img src="/images/instagram.png" className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0" alt="Instagram" />
           <img src="/images/youtube.png" className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0" alt="Youtube" />
         </div>
-        <div className="h-24 flex justify-center items-center">
-          <img className="w-52 h-50 lg:h-52 lg:w-52" src="/images/EJP-Creative.png" alt="" />
-        </div>
+        <img className="w-52 h-50 lg:h-52 lg:w-52" src="/images/EJP-Creative.png" alt="" />
       </footer>
     </div>
   );

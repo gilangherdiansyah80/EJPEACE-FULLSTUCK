@@ -7,8 +7,8 @@ import BackToMain from "../component/Elements/BackToMain"
 
 const Squad = () => {
     return (
-        <AuthLayout bg={'bg-[#2098B5]'} hover={'hover:text-[#FFC255]'} bgColor={'bg-[#FB7316]'} menu1={'About'} menu2={'Contact'} menu3={'Unit Bisnis'}>
-            <main className="w-full p-3 lg:p-20 flex flex-col gap-10 md:gap-20 mt-32" id="home">
+        <AuthLayout bg={'bg-[#2098B5]'} hover={'hover:bg-[#2098B5] hover:text-ejp p-3 rounded-lg'} bgColor={'bg-[#FB7316]'} menu1={'About'} menu2={'Contact'} menu3={'Unit Bisnis'}  menuActive={'bg-[#2098B5] text-ejp'}>
+            <main className="w-full p-3 lg:p-20 flex flex-col gap-10 md:gap-20 mt-32 lg:w-3/4" id="home">
                 <HeroSquadSection />
                 <ProgramHighlightSquad />
                 <section className="flex flex-col justify-center items-center gap-y-20">
@@ -24,7 +24,7 @@ const Squad = () => {
                 </section>
                 <OurMember />
                 <ContactSquad />
-                <BackToMain />
+                <BackToMain bgColor={'bg-[#FB7316]'} />
             </main>
         </AuthLayout>
     )

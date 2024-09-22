@@ -3,7 +3,7 @@ import Card from "../Elements/Card";
 
 const PacakgeAcademy = () => {
     return (
-        <section className="mb-52">
+        <section className="lg:mb-52">
                     <h1 className="text-center text-6xl font-bold">Pacakge</h1>
                     <div className="md:grid md:grid-cols-2 md:gap-3 flex flex-col gap-y-3 lg:grid-cols-3 mt-20">
                             {Package.map((item) => (
@@ -28,7 +28,7 @@ const PacakgeAcademy = () => {
                     </div>
 
                     <div id="unitBisnis"></div>
-                </section>
+        </section>
     )
 }
 
