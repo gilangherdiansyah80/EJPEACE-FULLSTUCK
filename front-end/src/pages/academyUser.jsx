@@ -77,7 +77,7 @@ const AcademyUser = () => {
             style2='p-3 bg-[#DE4FC1] text-white rounded-xl hover:bg-white hover:text-black'
             onClick={handleLogout}
         >
-            <main className="w-full p-3 lg:p-20 flex flex-col gap-10 md:gap-20 mt-32" id="home">
+            <main className="w-full p-3 lg:p-20 flex flex-col gap-10 md:gap-20 mt-32 lg:w-3/4" id="home">
                 <HeroAcademySection />
                 <section className="mb-52">
                     <h1 className="text-center text-6xl font-bold">Package</h1>

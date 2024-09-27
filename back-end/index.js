@@ -106,7 +106,7 @@ app.get('/api/siswa/:userId', (req, res) => {
 // endpoint untuk menampilkan level
 app.get('/api/level', (req, res) => {
     const sql = 'SELECT * FROM level';
-    ddb.query(sql, (err, result) => {
+    db.query(sql, (err, result) => {
         if (err) {
             response(500, null, 'Failed to retrieve package data', res);
         } else {
@@ -116,19 +116,35 @@ app.get('/api/level', (req, res) => {
 })
 
 // endpoint untuk menampilkan course
-app.get('/api/course/:id_level/:id_paket', (req, res) => {
+// Endpoint untuk mendapatkan course berdasarkan id_level dan id_paket
+app.get('/api/course/:id_paket/:id_level', (req, res) => {
     const { id_level, id_paket } = req.params;
+
+    // Validasi parameter apakah id_level dan id_paket adalah angka
+    if (isNaN(id_level) || isNaN(id_paket)) {
+        return response(400, null, 'Invalid level or package ID', res); // 400: Bad Request jika parameter tidak valid
+    }
+
+    // Query SQL untuk mendapatkan data course berdasarkan id_level dan id_paket
     const sql = 'SELECT * FROM courses WHERE id_level = ? AND id_paket = ?';
+
+    // Eksekusi query dengan parameter yang disesuaikan
     db.query(sql, [id_level, id_paket], (err, result) => {
         if (err) {
-            response(500, null, 'Failed to retrieve package data', res);
-        } else if (result.length === 0) {
-            response(404, null, 'Package not found', res);
-        } else {
-            response(200, result, 'Data From Table package', res);
+            // 500: Internal Server Error jika terjadi kesalahan pada database
+            return response(500, null, 'Failed to retrieve package data', res);
         }
-    })
-})
+
+        if (result.length === 0) {
+            // 404: Not Found jika tidak ada hasil yang ditemukan
+            return response(404, null, 'Package not found', res);
+        }
+
+        // 200: OK jika data berhasil diambil
+        response(200, result, 'Data retrieved successfully', res);
+    });
+});
+
 
 // Midtrans Snap API setup
 let snap = new midtransClient.Snap({

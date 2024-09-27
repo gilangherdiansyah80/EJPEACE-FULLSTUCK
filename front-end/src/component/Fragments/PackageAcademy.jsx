@@ -1,5 +1,6 @@
 import Package from "../../utils/package";
 import Card from "../Elements/Card";
+import { Link } from "react-router-dom";
 
 const PacakgeAcademy = () => {
     return (
@@ -17,12 +18,14 @@ const PacakgeAcademy = () => {
                                     className={'flex flex-col gap-y-3'} 
                                     bgImage={'bg-gray-300'}
                                 >
-                                    <button className="bg-[#FBA9DB] rounded-lg justify-center text-black p-2 flex gap-3 font-swiss w-full">
-                                        Kunjungi
-                                        <span>
-                                            <i className="fas fa-arrow-right"></i>
-                                        </span>
-                                    </button>
+                                    <Link to='/loginsection'>
+                                        <button className="bg-[#FBA9DB] rounded-lg justify-center text-black p-2 flex gap-3 font-swiss w-full">
+                                            Beli
+                                            <span>
+                                                <i className="fas fa-arrow-right"></i>
+                                            </span>
+                                        </button>
+                                    </Link>
                                 </Card>
                             ))}
                     </div>

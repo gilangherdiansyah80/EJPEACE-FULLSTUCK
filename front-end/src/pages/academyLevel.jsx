@@ -2,20 +2,19 @@ import { useState, useEffect } from 'react';
 import AuthLayout from '../component/Layouts/AuthLayout';
 import Card from '../component/Elements/Card';
 import { Link, useParams } from 'react-router-dom';
+import Hero from '../component/Elements/Hero';
+import HeroAcafemy from '../utils/heroAcademy';
 
 
 const AcademyLevel = () => {
     const [popup, setPopup] = useState(false);
     const [user, setUser] = useState(null);
     const [dataLevel, setdataLevel] = useState([]);
-    const [level, setLevel] = useState([]);
     const { id } = useParams();
 
     // State untuk bulan dan tahun
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
     const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-
-    const endPointLevel = `http://localhost:3000/api/levelcourse/${id}`;
 
     const endPoint = 'http://localhost:3000/api/level';
     
@@ -27,12 +26,6 @@ const AcademyLevel = () => {
             console.log(data.payload.datas)
         }
 
-        const getPackageLevel = async () => {
-            const response = await fetch(endPointLevel);
-            const data = await response.json();
-            setLevel(data.payload.datas);
-            console.log(data.payload.datas)
-        }
         // Ambil data pengguna dari localStorage
         const userData = JSON.parse(localStorage.getItem('user'));
 
@@ -44,8 +37,7 @@ const AcademyLevel = () => {
         }
 
         getPackage();
-        getPackageLevel();
-    }, [endPoint, endPointLevel]);
+    }, [endPoint, id]);
 
     // Fungsi untuk menghitung jumlah hari dalam bulan yang ditentukan
     const daysInMonth = (month, year) => {
@@ -116,6 +108,20 @@ const AcademyLevel = () => {
 
     const days = generateCalendarDays();
 
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    const handleNextSlide = () => {
+        setCurrentSlide((prev) => (prev === HeroAcafemy.length - 1 ? 0 : prev + 1));
+    };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            handleNextSlide();
+        }, 15000);
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <AuthLayout 
             bg={'bg-[#FBA9DB]'} 
@@ -127,20 +133,33 @@ const AcademyLevel = () => {
             style2={'p-3 bg-[#DE4FC1] text-white rounded-xl hover:bg-white hover:text-black'} 
             onClick={handleLogout}
         >
-            <main className="w-full p-3 lg:p-20 flex flex-col gap-10 md:gap-20 mt-32" id="home">
-            <section className='flex flex-col gap-y-3 text-center'>
-                    <div className="bg-gray-400 rounded-md p-10">
+            <main className="w-full p-3 lg:p-20 flex flex-col gap-10 md:gap-20 mt-32 lg:w-3/4" id="home">
+            <Hero rounded={"rounded-xl"} src={HeroAcafemy[currentSlide].image} />
+            <section className="flex flex-col items-center mt-3 gap-y-10">
+                <div className="flex gap-2">
+                    {HeroAcafemy.map((_, index) => (
+                    <div
+                        key={index}
+                        className={`w-2 h-2 rounded-full ${
+                        currentSlide === index ? "bg-black" : "bg-gray-300"
+                        }`}
+                    ></div>
+                    ))}
+                </div>                
+            </section>
+                <section className='flex flex-col gap-y-3 text-center lg:flex-row w-full lg:gap-x-5'>
+                    <div className="bg-gray-400 rounded-md p-10 lg:w-5/6 flex flex-col justify-center items-center">
                         <h1 className="text-xl text-center">No Information</h1>
                     </div>
 
-                    <div className='bg-white flex flex-col gap-y-3 p-3 rounded-md'>
-                        <div className="flex justify-between items-center">
+                    <div className='bg-white flex flex-col gap-y-3 rounded-md lg:w-1/3'>
+                        <div className="flex justify-between items-center bg-[#3FD6EB] p-3">
                             <i onClick={handlePreviousMonth} className='cursor-pointer fas fa-arrow-left' />
                             <h2>{`${new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long' })} ${currentYear}`}</h2>
                             <i onClick={handleNextMonth} className='cursor-pointer fas fa-arrow-right' />
                         </div>
 
-                        <table>
+                        <table className='p-3 mb-2'>
                             <thead>
                                 <tr>
                                     <th>Sun</th>
@@ -168,7 +187,7 @@ const AcademyLevel = () => {
                 <section className="mb-52 flex flex-col gap-y-7">
                     <h1 className="text-center text-4xl md:text-6xl font-bold">Level</h1>
                     <div className="md:grid md:grid-cols-2 md:gap-3 flex flex-col gap-y-3 lg:grid-cols-3">
-                        {level && dataLevel?.map((item) => (
+                        {dataLevel?.map((item) => (
                             <Card 
                                 key={item.id_course} 
                                 style={`w-full bg-white text-black shadow-2xl rounded-lg flex flex-col gap-3 p-3`}
@@ -177,7 +196,7 @@ const AcademyLevel = () => {
                                 className={'flex flex-col gap-y-3'} 
                                 bgImage={'bg-gray-300'}
                             >
-                                <Link to={`/academycourse/${item.id_level}/${item.id_level}`}>
+                                <Link to={`/academycourse/${id}/${item.id_level}`}>
                                 <button className="bg-[#FBA9DB] rounded-lg justify-center text-black p-2 flex gap-3 font-swiss w-full">
                                     Masuk
                                     <span>

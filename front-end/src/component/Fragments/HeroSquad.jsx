@@ -23,7 +23,7 @@ const HeroSquadSection = () => {
 
 
     return (
-        <Hero rounded={"rounded-xl"} src={HeroSquad[currentSlide].image} style={'opacity-20 border-black border-2 border-solid'}>
+        <Hero rounded={"rounded-xl"} src={HeroSquad[currentSlide].image} style={'border-black border-2 border-solid'}>
                 <div className="flex justify-between items-center mt-3">
                 <button
                     onClick={handlePrevSlide}

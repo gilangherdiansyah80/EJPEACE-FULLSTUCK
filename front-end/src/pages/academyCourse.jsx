@@ -13,7 +13,7 @@ const AcademyCourse = () => {
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
     const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
-    const endPoint = `http://localhost:3000/api/course/${id_level}/${id_paket}`;
+    const endPoint = `http://localhost:3000/api/course/${id_paket}/${id_level}`;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -115,20 +115,20 @@ const AcademyCourse = () => {
             style2={'p-3 bg-[#DE4FC1] text-white rounded-xl hover:bg-white hover:text-black'} 
             onClick={handleLogout}
         >
-            <main className="w-full p-3 lg:p-20 flex flex-col gap-10 md:gap-20 mt-32" id="home">
-                <section className='flex flex-col gap-y-3 text-center'>
-                    <div className="bg-gray-400 rounded-md p-10">
+            <main className="w-full p-3 lg:p-20 flex flex-col gap-10 md:gap-20 mt-32 lg:w-3/4" id="home">
+                <section className='flex flex-col gap-y-3 text-center lg:flex-row w-full lg:gap-x-5'>
+                    <div className="bg-gray-400 rounded-md p-10 lg:w-5/6 flex flex-col justify-center items-center">
                         <h1 className="text-xl text-center">No Information</h1>
                     </div>
 
-                    <div className='bg-white flex flex-col gap-y-3 p-3 rounded-md'>
-                        <div className="flex justify-between items-center">
+                    <div className='bg-white flex flex-col gap-y-3 rounded-md lg:w-1/3'>
+                        <div className="flex justify-between items-center bg-[#3FD6EB] p-3">
                             <i onClick={handlePreviousMonth} className='cursor-pointer fas fa-arrow-left' />
                             <h2>{`${new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long' })} ${currentYear}`}</h2>
                             <i onClick={handleNextMonth} className='cursor-pointer fas fa-arrow-right' />
                         </div>
 
-                        <table>
+                        <table className='p-3'>
                             <thead>
                                 <tr>
                                     <th>Sun</th>
@@ -155,7 +155,7 @@ const AcademyCourse = () => {
 
                 <section className="mb-52 flex flex-col gap-y-7">
                     <h1 className="text-4xl md:text-6xl font-bold">Course</h1>
-                    <div className="md:grid md:grid-cols-2 md:gap-3 flex flex-col gap-y-3 lg:grid-cols-3">
+                    <div className="flex flex-col gap-y-3">
                         {dataCourse?.map((item) => (
                             <div key={item.id_course} className='flex flex-col gap-y-3'>
                                 <div className='flex justify-between items-center' onClick={() => handleArrow(item.id_course)}>
