@@ -177,9 +177,9 @@ const DetailPackage = () => {
             style2={'p-3 bg-[#DE4FC1] text-white rounded-xl hover:bg-white hover:text-black'} 
             onClick={handleLogout}
         >
-            <main className="w-full p-3 lg:p-20 flex flex-col gap-10 md:gap-20 mt-32" id="home">
-                <div className="w-full flex gap-x-10">
-                    <section className="w-2/6 bg-[#3FD6EB] rounded-lg">
+            <main className="w-full p-3 lg:p-20 flex flex-col gap-10 md:gap-20 mt-32 lg:w-3/4" id="home">
+                <div className="w-full flex flex-col lg:flex-row gap-y-5 lg:gap-x-10">
+                    <section className="lg:w-2/6 bg-[#3FD6EB] rounded-lg">
                        <div className="p-3 flex flex-col gap-y-3">
                        {dataPackage.map((item) => (
                              <div key={item.id_paket} className="flex items-start gap-x-5">
@@ -196,7 +196,7 @@ const DetailPackage = () => {
                        </div>
                     </section>
 
-                    <section className="w-2/6 bg-white p-3 rounded-lg">
+                    <section className="lg:w-2/6 bg-white p-3 rounded-lg">
                         <div className="flex flex-col gap-y-5">
                             {packageData.map((data) => (
                                 <div key={data.id_paket} className="flex items-start gap-x-5">
@@ -226,7 +226,7 @@ const DetailPackage = () => {
                         </div>
                     </section>
 
-                    <section className={`rounded-lg ${handleCheckout ? 'w-full' : 'hidden'}`} id="snap-container"></section>
+                    <section className={`rounded-lg ${handleCheckout ? 'w-full' : 'hidden'} lg:w-1/6`} id="snap-container"></section>
                 </div>
 
                 {/* Pop-up logout confirmation */}

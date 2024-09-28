@@ -69,9 +69,10 @@ const AcademyUser = () => {
     return (
         <AuthLayout 
             bg='bg-[#FBA9DB]'
-            hover='hover:text-[#DE4FC1]'
+            hover={'hover:bg-[#DE4FC1] hover:text-white p-3 rounded-lg'}
             bgColor='bg-[#3FD6EB]'
             menu1='Package'
+            menuActive={'bg-[#DE4FC1] text-white'}
             button1={user ? `Selamat Datang Tuan, ${user.username}` : 'Guest'}
             button2='Logout'
             style2='p-3 bg-[#DE4FC1] text-white rounded-xl hover:bg-white hover:text-black'
