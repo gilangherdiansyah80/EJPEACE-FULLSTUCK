@@ -12,6 +12,9 @@ import AcademyUser from './pages/academyUser.jsx'
 import DetailPackage from './pages/detailPackage.jsx'
 import AcademyLevel from './pages/academyLevel.jsx'
 import AcademyCourse from './pages/academyCourse.jsx'
+import HomeSection from './pages/AdminStudio/HomeSection.jsx'
+import Pesanan from './pages/AdminStudio/pesanan.jsx'
+import Promo from './pages/AdminStudio/promo.jsx'
 
 const router = createBrowserRouter([
   {
@@ -53,6 +56,18 @@ const router = createBrowserRouter([
   {
     path: '/academycourse/:id_level/:id_paket',
     element: <AcademyCourse />,
+  },
+  {
+    path: '/homeadminstudio',
+    element: <HomeSection />,
+  },
+  {
+    path: '/pesanan',
+    element: <Pesanan />,
+  },
+  {
+    path: '/promo',
+    element: <Promo />,
   },
 ])
 

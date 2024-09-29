@@ -66,7 +66,7 @@ const LoginSection = () => {
         if (user && isPasswordCorrect) {
             localStorage.setItem('user', JSON.stringify(user));
             setPopup({ message: "Login Berhasil", isVisible: true, isSuccess: true });
-            setRedirectTo(isAdmin ? "/" : isUser ? "/academyuser" : "/studio");
+            setRedirectTo(isAdmin ? "/" : isUser ? "/academyuser" : "/homeadminstudio");
         } else if (user && !isPasswordCorrect) {
             setPopup({ message: "Password Salah", isVisible: true, isSuccess: false });
         } else if (!user && isPasswordCorrect) {

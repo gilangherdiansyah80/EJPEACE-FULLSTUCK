@@ -115,6 +115,17 @@ app.get('/api/level', (req, res) => {
     })
 })
 
+app.get('/api/books', (req, res) => {
+    const sql = 'SELECT order_id, name, phone, date, time_start, time_end FROM bookings';
+    db.query(sql, (err, result) => {
+        if (err) {
+            response(500, null, 'Failed to retrieve package data', res);
+        } else {
+            response(200, result, 'Data From Table package', res);
+        }
+    })
+})
+
 // endpoint untuk menampilkan course
 // Endpoint untuk mendapatkan course berdasarkan id_level dan id_paket
 app.get('/api/course/:id_paket/:id_level', (req, res) => {
