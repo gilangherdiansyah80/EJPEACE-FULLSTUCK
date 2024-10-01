@@ -15,6 +15,7 @@ import AcademyCourse from './pages/academyCourse.jsx'
 import HomeSection from './pages/AdminStudio/HomeSection.jsx'
 import Pesanan from './pages/AdminStudio/pesanan.jsx'
 import Promo from './pages/AdminStudio/promo.jsx'
+import EditPesanan from './pages/AdminStudio/editPesanan.jsx'
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
   {
     path: '/promo',
     element: <Promo />,
+  },
+  {
+    path: '/editpesanan/:id',
+    element: <EditPesanan />,
   },
 ])
 

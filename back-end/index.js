@@ -116,7 +116,7 @@ app.get('/api/level', (req, res) => {
 })
 
 app.get('/api/books', (req, res) => {
-    const sql = 'SELECT order_id, name, phone, date, time_start, time_end FROM bookings';
+    const sql = 'SELECT id,order_id, name, phone, date, time_start, time_end FROM bookings';
     db.query(sql, (err, result) => {
         if (err) {
             response(500, null, 'Failed to retrieve package data', res);
@@ -155,6 +155,20 @@ app.get('/api/course/:id_paket/:id_level', (req, res) => {
         response(200, result, 'Data retrieved successfully', res);
     });
 });
+
+app.get('/api/booking/:id', (req, res) => {
+    const sql = 'SELECT * FROM bookings WHERE id = ?';
+    const id = req.params.id;
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            response(500, null, 'Failed to retrieve booking data', res);
+        } else if (result.length === 0) {
+            response(404, null, 'Booking not found', res);
+        } else {
+            response(200, result, 'Data From Table booking', res);
+        }
+    });
+})
 
 
 // Midtrans Snap API setup
@@ -331,6 +345,23 @@ app.post('/verify-user', (req, res) => {
         res.status(500).json({ error: 'Error verifying user', details: error.message });
     }
 });
+
+app.delete('/api/booking/:id', (req, res) => {
+    const id = req.params.id
+
+    const sql = 'DELETE FROM bookings WHERE id = ?'
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            res.status(500).send({ message: 'Error deleting booking', error: err });
+            return;
+        }
+        if (result.affectedRows === 0) {
+            res.status(404).send({ message: 'No booking found with this ID' });
+            return;
+        }
+        res.send({ message: `Booking with ID ${id} has been deleted successfully` });
+    });
+})
 
 
 // Start server
