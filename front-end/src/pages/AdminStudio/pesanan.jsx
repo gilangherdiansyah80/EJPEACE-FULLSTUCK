@@ -64,10 +64,7 @@ const Pesanan = () => {
     }, [])
 
     return (
-        <div className="bg-ejp min-h-screen p-3 flex flex-col gap-y-10">
-            <AuthLayoutAdmin />
-
-            <main className="bg-white p-3 rounded-md flex flex-col gap-y-10">
+            <AuthLayoutAdmin>
                 <header className="flex justify-between items-center">
                     <p className="text-xl font-semibold">Hi, admin have a nice day</p>
                     <i className="fas fa-user text-black text-xl"></i>
@@ -135,8 +132,7 @@ const Pesanan = () => {
                         </div>
                     </section>
                 )}
-            </main>
-        </div>
+        </AuthLayoutAdmin>
     )
 }
 

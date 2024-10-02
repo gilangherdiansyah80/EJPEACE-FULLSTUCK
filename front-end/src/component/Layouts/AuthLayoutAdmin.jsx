@@ -1,15 +1,19 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-const AuthLayoutAdmin = () => {
+// eslint-disable-next-line react/prop-types
+const AuthLayoutAdmin = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false)
+    const [isMenuOpen, setIsMenuOpen] = useState(true)
 
     const handleOpen = () => {
         setIsOpen(!isOpen)
+        setIsMenuOpen(!isMenuOpen)
     }
 
     return (
-        <aside className="p-3">
+        <div className="bg-ejp p-3 flex flex-col gap-y-10">
+            <aside className="p-3">
                 {isOpen ? (
                     <i className="fas fa-times text-white text-xl" onClick={handleOpen}></i>
                 ) : (
@@ -18,7 +22,7 @@ const AuthLayoutAdmin = () => {
 
                 {/* Sidebar for Mobile Device and Tablet Device */}
                 {isOpen && (
-                    <nav className="min-h-screen flex flex-col items-center gap-y-10">
+                    <nav className="min-h-screen flex flex-col bg-ejp items-center gap-y-10">
                         <div className="flex flex-col justify-between items-center">
                             <img className="w-52 lg:h-52 mt-5 lg:w-52" src="/images/EJP-Creative.png" alt="EJ PEACE" />
                             <div className="-mt-14 flex flex-col gap-y-2 justify-center items-center">
@@ -51,6 +55,13 @@ const AuthLayoutAdmin = () => {
                     </nav>
                 )}
             </aside>
+
+            {isMenuOpen && (
+                <main className="bg-white p-3 min-h-screen rounded-md flex flex-col gap-y-10">
+                    {children}
+                </main>
+            )}
+        </div>
     )
 }
 

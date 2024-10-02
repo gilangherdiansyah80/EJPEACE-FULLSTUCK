@@ -67,7 +67,7 @@ const AuthLayout = ({ children, bg, menu1, menu2, menu3, bgColor, style1, style2
                 <a href="#contact" onClick={(e) => handleClick("contact", e)}>
                 <li onClick={handerOpen} className={`${hover} ${activeMenu === 'contact' ? `${menuActive} p-3 rounded-lg` : ''}`}>{menu3}</li>
               </a>
-                <div className="flex gap-x-2 items-center">
+                <div className="flex gap-x-2 items-center w-full">
                   <Link to={link1}>
                     <button className={style1}>{button1}</button>
                   </Link>

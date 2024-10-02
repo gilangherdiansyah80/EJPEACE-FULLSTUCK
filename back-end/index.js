@@ -346,6 +346,24 @@ app.post('/verify-user', (req, res) => {
     }
 });
 
+app.put('/api/booking/:id', (req, res) => {
+    const id = req.params.id
+    const { date, time_start, time_end } = req.body
+
+    const sql = 'UPDATE bookings SET date = ?, time_start = ?, time_end = ? WHERE id = ?'
+    db.query(sql, [date, time_start, time_end, id], (err, result) => {
+        if (err) {
+            res.status(500).send({ message: 'Error updating booking', error: err });
+            return;
+        }
+        if (result.affectedRows === 0) {
+            res.status(404).send({ message: 'No booking found with this ID' });
+            return;
+        }
+        res.send({ message: `Booking with ID ${id} has been updated successfully` });
+    });
+})
+
 app.delete('/api/booking/:id', (req, res) => {
     const id = req.params.id
 
