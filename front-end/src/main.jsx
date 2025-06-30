@@ -1,83 +1,67 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import Home from './pages/home.jsx'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import './index.css'
-import Stuido from './pages/stuido.jsx'
-import Academy from './pages/academy.jsx'
-import Squad from './pages/squad.jsx'
-import LoginSection from './pages/login.jsx'
-import Register from './pages/register.jsx'
-import AcademyUser from './pages/academyUser.jsx'
-import DetailPackage from './pages/detailPackage.jsx'
-import AcademyLevel from './pages/academyLevel.jsx'
-import AcademyCourse from './pages/academyCourse.jsx'
-import HomeSection from './pages/AdminStudio/HomeSection.jsx'
-import Pesanan from './pages/AdminStudio/pesanan.jsx'
-import Promo from './pages/AdminStudio/promo.jsx'
-import EditPesanan from './pages/AdminStudio/editPesanan.jsx'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Home from "./pages/home.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./index.css";
+import LoginSection from "./pages/login.jsx";
+import Register from "./pages/register.jsx";
+import MarketplaceHome from "./pages/Marketplace/marketplaceHome.jsx";
+import DetailProduct from "./pages/Marketplace/DetailProduct.jsx";
+import AllProducts from "./pages/Marketplace/AllProducts.jsx";
+import DashboardHome from "./pages/Dashboard/DashboardHome.jsx";
+import DashboardProducts from "./pages/Dashboard/DashboardProducts.jsx";
+import DashboardAddProducts from "./pages/Dashboard/DashboardAddProducts.jsx";
+import DashboardEditProducts from "./pages/Dashboard/DashboardEditProducts.jsx";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Home />,
   },
   {
-    path: '/studio',
-    element: <Stuido />,
-  },
-  {
-    path: '/academy',
-    element: <Academy />,
-  },
-  {
-    path: '/squad',
-    element: <Squad />,
-  },
-  {
-    path: '/loginsection',
+    path: "/loginsection",
     element: <LoginSection />,
   },
   {
-    path: '/register',
+    path: "/register",
     element: <Register />,
   },
   {
-    path: '/academyuser',
-    element: <AcademyUser />,
+    path: "/Dashboard/DashboardHome",
+    element: <DashboardHome />,
+  },
+  // {
+  //   path: "/editpesanan/:id",
+  //   element: <EditPesanan />,
+  // },
+  {
+    path: "/Marketplace/MarketplaceHome",
+    element: <MarketplaceHome />,
   },
   {
-    path: '/detailpackage/:id',
-    element: <DetailPackage />,
+    path: "/Marketplace/DetailProduct/:id",
+    element: <DetailProduct />,
   },
   {
-    path: '/academylevel/:id',
-    element: <AcademyLevel />,
+    path: "/Marketplace/AllProducts",
+    element: <AllProducts />,
   },
   {
-    path: '/academycourse/:id_level/:id_paket',
-    element: <AcademyCourse />,
+    path: "/Dashboard/DashboardProducts",
+    element: <DashboardProducts />,
   },
   {
-    path: '/homeadminstudio',
-    element: <HomeSection />,
+    path: "/Dashboard/DashboardAddProducts",
+    element: <DashboardAddProducts />,
   },
   {
-    path: '/pesanan',
-    element: <Pesanan />,
+    path: "/Dashboard/DashboardEditdProducts/:id",
+    element: <DashboardEditProducts />,
   },
-  {
-    path: '/promo',
-    element: <Promo />,
-  },
-  {
-    path: '/editpesanan/:id',
-    element: <EditPesanan />,
-  },
-])
+]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
