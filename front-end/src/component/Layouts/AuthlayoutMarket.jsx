@@ -256,7 +256,7 @@ const AuthLayoutMarket = ({ children }) => {
               )}
               <Link to="/Marketplace/MarketplaceHome">
                 <img
-                  src="/images/EJP-Creative.png"
+                  src="/images/logo2.png"
                   alt="PT EJPeace Karya Indonesia"
                   className="w-40 absolute -mt-20"
                 />
@@ -326,7 +326,7 @@ const AuthLayoutMarket = ({ children }) => {
                         >
                           <div className="bg-white rounded-lg">
                             <img
-                              src="/images/EJP-Creative.png"
+                              src="/images/logo2.png"
                               alt={item.title}
                               className="w-20 rounded-xl"
                             />
@@ -427,7 +427,7 @@ const AuthLayoutMarket = ({ children }) => {
                   className="absolute -mt-24 -ml-7"
                 >
                   <img
-                    src="/images/EJP-Creative.png"
+                    src="/images/logo2.png"
                     alt="PT.Ejpeace Karya Indonesia"
                     className="w-52"
                   />
@@ -472,9 +472,9 @@ const AuthLayoutMarket = ({ children }) => {
                             to={`/Marketplace/DetailProduct/${item.product_id}`}
                           >
                             <li className="flex gap-x-5 items-center border p-2 rounded-md hover:bg-gray-100 transition">
-                              <div className="w-20 h-25 flex justify-center items-center overflow-hidden rounded-md">
+                              <div className="w-20 h-25 flex justify-center items-center overflow-hidden rounded-md bg-ejp">
                                 <img
-                                  src="/images/EJP-Creative.png"
+                                  src="/images/logo2.png"
                                   alt={item.title}
                                   className="w-full h-full object-cover"
                                 />
@@ -605,7 +605,7 @@ const AuthLayoutMarket = ({ children }) => {
                             {/* Gambar produk */}
                             <div className="bg-ejp rounded-lg">
                               <img
-                                src="/images/EJP-Creative.png"
+                                src="/images/logo2.png"
                                 alt={product.title}
                                 className="w-24 h-24 rounded-lg object-cover"
                               />
@@ -789,7 +789,7 @@ const AuthLayoutMarket = ({ children }) => {
                   )}
                   <div className="bg-ejp rounded-lg flex items-center">
                     <img
-                      src="/images/EJP-Creative.png"
+                      src="/images/logo2.png"
                       alt={product.title}
                       className="w-28 h-28 rounded-xl"
                     />
@@ -874,7 +874,15 @@ const AuthLayoutMarket = ({ children }) => {
         </section>
       )}
 
-      <main className="mt-14 lg:w-3/5 lg:self-center lg:mt-44">{children}</main>
+      <main className="mt-14 lg:w-3/5 lg:self-center lg:mt-44">
+        {children}
+        <Link
+          to="http://Wa.me/6289635773270"
+          className="bg-green-500 w-16 h-16 rounded-full flex justify-center items-center fixed right-5 bottom-5 z-30"
+        >
+          <i className="fa-brands fa-whatsapp text-4xl text-white"></i>
+        </Link>
+      </main>
 
       <footer
         className={`bg-gradient-to-r from-[#f6df3c] to-[#74690f] text-white flex flex-col p-3 gap-y-3 lg:gap-y-10 justify-between items-center w-full`}
@@ -883,35 +891,44 @@ const AuthLayoutMarket = ({ children }) => {
           Sosial Media
         </h1>
         <div className="flex gap-3 lg:gap-x-10">
-          <img
-            src="/images/facebook.png"
-            className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
-            alt="Facebook"
-          />
-          <img
-            src="/images/tiktok.png"
-            className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
-            alt="Tiktok"
-          />
-          <img
-            src="/images/twitter.png"
-            className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
-            alt="Twitter"
-          />
-          <img
-            src="/images/instagram.png"
-            className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
-            alt="Instagram"
-          />
-          <img
-            src="/images/youtube.png"
-            className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
-            alt="Youtube"
-          />
+          <Link to="https://www.facebook.com/profile.php?id=61556646910015">
+            <img
+              src="/images/facebook.png"
+              className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
+              alt="Facebook"
+            />
+          </Link>
+          <Link to="https://www.tiktok.com/@ejpeace.ent?is_from_webapp=1&sender_device=pc">
+            <img
+              src="/images/tiktok.png"
+              className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
+              alt="Tiktok"
+            />
+          </Link>
+          <Link to="https://www.instagram.com/ejpeace.entertainment/">
+            <img
+              src="/images/instagram.png"
+              className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
+              alt="Instagram"
+            />
+          </Link>
+          <Link to="https://www.youtube.com/@ejpeace">
+            <img
+              src="/images/youtube.png"
+              className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
+              alt="Youtube"
+            />
+          </Link>
         </div>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.562811319889!2d107.6208535110669!3d-6.942735667937234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e862246d4d8b%3A0xe9bef92e40558057!2sJl.%20Mutumanikam%20No.69%2C%20Cijagra%2C%20Kec.%20Lengkong%2C%20Kota%20Bandung%2C%20Jawa%20Barat%2040265!5e0!3m2!1sid!2sid!4v1751366683352!5m2!1sid!2sid"
+          className="w-full h-96"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
         <img
           className="w-52 h-50 lg:h-52 lg:w-52"
-          src="/images/EJP-Creative.png"
+          src="/images/logo1.png"
           alt=""
         />
       </footer>

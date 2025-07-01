@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const Hero = ({
@@ -20,18 +21,15 @@ const Hero = ({
   buttonStyle,
   // eslint-disable-next-line react/prop-types
   style,
+  // eslint-disable-next-line react/prop-types
+  link,
 }) => {
   return (
     <Fragment>
       <div
         className={`w-full flex bg-ejp ${style} relative ${rounded} w-full h-[683px]`}
       >
-        <img
-          className="opacity-100 w-full h-full object-cover rounded-xl"
-          src={src}
-          alt="Slide"
-        />
-        <div className="h-full w-full text-white p-6 lg:gap-y-10 flex flex-col justify-center absolute">
+        <div className="h-full lg:w-[1200px] text-white p-6 lg:gap-y-10 flex flex-col justify-center ">
           <div className="flex flex-col gap-3">
             <h1 className="text-4xl font-bold lg:text-6xl font-helvetica">
               {title}
@@ -42,9 +40,16 @@ const Hero = ({
           </div>
           <div className="flex flex-col gap-3 max-w-2xl">
             <p className="lg:text-xl font-swiss">{description}</p>
-            <button className={buttonStyle}>{buttonText}</button>
+            <Link to={link} className={buttonStyle}>
+              {buttonText}
+            </Link>
           </div>
         </div>
+        <img
+          src="/images/logo1.png"
+          alt=""
+          className="w-full h-full object-cover opacity-50"
+        />
       </div>
       {children}
     </Fragment>

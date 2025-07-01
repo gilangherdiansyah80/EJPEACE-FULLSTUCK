@@ -35,6 +35,7 @@ const HeroSection = ({ children }) => {
           subtitle={slides[currentSlide].subtitle}
           description={slides[currentSlide].description}
           buttonText={slides[currentSlide].buttonText}
+          link={slides[currentSlide].link}
           buttonStyle={"bg-yellowejp rounded-lg w-28 text-black h-10 p-2"}
         >
           <div className="flex justify-between items-center mt-3">

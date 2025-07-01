@@ -104,7 +104,7 @@ const DetailProduct = () => {
               <div className="bg-gradient-to-r from-[#f6df3c] to-[#74690f] p-3 rounded-xl flex flex-col gap-y-3">
                 <div className="bg-black rounded-lg">
                   <img
-                    src="/images/EJP-Creative.png"
+                    src="/images/logo2.png"
                     alt="PT EJPeace Karya Indonesia"
                   />
                 </div>
@@ -177,7 +177,7 @@ const DetailProduct = () => {
                 <section className="p-3 flex flex-col gap-y-3">
                   <div className="bg-black rounded-lg flex justify-center">
                     <img
-                      src="/images/EJP-Creative.png"
+                      src="/images/logo2.png"
                       alt="PT EJPeace Karya Indonesia"
                       className="w-52"
                     />

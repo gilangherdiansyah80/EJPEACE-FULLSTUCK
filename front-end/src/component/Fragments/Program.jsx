@@ -37,7 +37,7 @@ const ProgramKerja = () => {
   return (
     <Fragment>
       <section className="flex flex-col gap-3">
-        <h1 className="text-3xl font-bold mb-5 lg:text-6xl  font-helvetica">
+        <h1 className="text-3xl font-bold mb-5 lg:text-4xl  font-helvetica">
           Category Products
         </h1>
         {/* <div className="flex gap-2 justify-center flex-wrap lg:mb-10">
@@ -91,7 +91,7 @@ const ProgramKerja = () => {
           </button>
         </div> */}
 
-        <div className="md:grid md:grid-cols-2 lg:grid-cols-2 md:grid-rows-2 flex flex-col gap-y-3 md:gap-3 lg:gap-5">
+        <div className="md:grid md:grid-cols-2 lg:grid-cols-4 flex flex-col gap-y-3 md:gap-3 lg:gap-5">
           {paginatedProgram.map((item) => (
             <Card
               style={`w-full bg-black text-white shadow-2xl rounded-lg flex flex-col gap-3 p-3`}
@@ -100,7 +100,7 @@ const ProgramKerja = () => {
               name={item.name}
               deskripsi={item.deskripsi}
               link={item.link}
-              className={"flex flex-col gap-y-3"}
+              className={"flex flex-col gap-y-3 self-start"}
               bgImage={"bg-white"}
             >
               <Link
@@ -114,43 +114,6 @@ const ProgramKerja = () => {
               </Link>
             </Card>
           ))}
-        </div>
-
-        {/* Pagination */}
-        <div className="flex justify-center items-center rounded-lg gap-x-3 p-3 lg:mt-10">
-          <button
-            onClick={() => handlePageClick(currentPage - 1)}
-            disabled={currentPage === 1}
-            className="flex items-center gap-x-3 lg:p-3 rounded-md bg-gray-100 justify-center"
-          >
-            <i className="fas fa-arrow-left lg:text-2xl"></i>
-            <p className="lg:text-2xl font-swiss">Kembali</p>
-          </button>
-
-          <div className="flex gap-x-3">
-            {[...Array(totalPages)].map((_, index) => (
-              <button
-                key={index}
-                onClick={() => handlePageClick(index + 1)}
-                className={`lg:text-2xl font-swiss ${
-                  currentPage === index + 1
-                    ? "bg-black px-3 py-1 text-white rounded-md"
-                    : ""
-                }`}
-              >
-                {index + 1}
-              </button>
-            ))}
-          </div>
-
-          <button
-            onClick={() => handlePageClick(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className="flex items-center gap-x-3 lg:p-3 rounded-md bg-gray-100 justify-center"
-          >
-            <p className="lg:text-2xl font-swiss">Selanjutnya</p>
-            <i className="fas fa-arrow-right lg:text-2xl"></i>
-          </button>
         </div>
       </section>
       <div id="contact"></div>

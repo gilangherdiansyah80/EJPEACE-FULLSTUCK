@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -26,6 +26,8 @@ const AuthLayout = ({
 
   const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("home");
+  const [logoIndex, setLogoIndex] = useState(0);
+  const logos = ["/images/logo1.png", "/images/logo2.png"];
 
   const handerOpen = () => setOpen(!open);
 
@@ -42,6 +44,14 @@ const AuthLayout = ({
     setActiveMenu(id);
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLogoIndex((prevIndex) => (prevIndex + 1) % logos.length);
+    }, 2000); // ganti setiap 2 detik
+
+    return () => clearInterval(interval); // cleanup saat komponen unmount
+  }, []);
+
   return (
     <div
       className={`w-full ${bg} overflow-hidden lg:flex lg:flex-col lg:justify-between lg:items-center`}
@@ -53,11 +63,17 @@ const AuthLayout = ({
       >
         <div className="flex justify-between items-center w-full lg:w-3/4 px-5 lg:px-10 text-white">
           {/* Logo */}
-          <img
-            className="w-52 lg:h-52 mt-5 lg:w-52"
-            src="/images/EJP-Creative.png"
-            alt="EJ PEACE"
-          />
+          <Link to="/">
+            <img
+              className={` ${
+                logos[logoIndex] === "/images/logo1.png"
+                  ? "lg:w-36"
+                  : "mt-5 lg:h-52"
+              }`}
+              src={logos[logoIndex]}
+              alt="EJ PEACE"
+            />
+          </Link>
 
           {/* Mobile menu icon */}
           <div className="lg:hidden me-6">
@@ -232,7 +248,15 @@ const AuthLayout = ({
         </div>
       </header>
 
-      {children}
+      <main className="flex flex-col gap-y-10 justify-center items-center">
+        {children}
+        <Link
+          to="http://Wa.me/6289635773270"
+          className="bg-green-500 w-16 h-16 rounded-full flex justify-center items-center fixed right-5 bottom-5 z-30"
+        >
+          <i className="fa-brands fa-whatsapp text-4xl text-white"></i>
+        </Link>
+      </main>
 
       <footer
         className={`${bgColor} text-white flex flex-col p-3 gap-y-3 lg:gap-y-10 justify-between items-center w-full`}
@@ -241,35 +265,44 @@ const AuthLayout = ({
           Sosial Media
         </h1>
         <div className="flex gap-3 lg:gap-x-10">
-          <img
-            src="/images/facebook.png"
-            className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
-            alt="Facebook"
-          />
-          <img
-            src="/images/tiktok.png"
-            className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
-            alt="Tiktok"
-          />
-          <img
-            src="/images/twitter.png"
-            className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
-            alt="Twitter"
-          />
-          <img
-            src="/images/instagram.png"
-            className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
-            alt="Instagram"
-          />
-          <img
-            src="/images/youtube.png"
-            className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
-            alt="Youtube"
-          />
+          <Link to="https://www.facebook.com/profile.php?id=61556646910015">
+            <img
+              src="/images/facebook.png"
+              className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
+              alt="Facebook"
+            />
+          </Link>
+          <Link to="https://www.tiktok.com/@ejpeace.ent?is_from_webapp=1&sender_device=pc">
+            <img
+              src="/images/tiktok.png"
+              className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
+              alt="Tiktok"
+            />
+          </Link>
+          <Link to="https://www.instagram.com/ejpeace.entertainment/">
+            <img
+              src="/images/instagram.png"
+              className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
+              alt="Instagram"
+            />
+          </Link>
+          <Link to="https://www.youtube.com/@ejpeace">
+            <img
+              src="/images/youtube.png"
+              className="w-12 md:w-14 h-12 md:h-14 grayscale hover:grayscale-0"
+              alt="Youtube"
+            />
+          </Link>
         </div>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.562811319889!2d107.6208535110669!3d-6.942735667937234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e862246d4d8b%3A0xe9bef92e40558057!2sJl.%20Mutumanikam%20No.69%2C%20Cijagra%2C%20Kec.%20Lengkong%2C%20Kota%20Bandung%2C%20Jawa%20Barat%2040265!5e0!3m2!1sid!2sid!4v1751366683352!5m2!1sid!2sid"
+          className="w-full h-96"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
         <img
           className="w-52 h-50 lg:h-52 lg:w-52"
-          src="/images/EJP-Creative.png"
+          src="/images/logo1.png"
           alt=""
         />
       </footer>

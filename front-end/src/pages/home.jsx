@@ -22,7 +22,6 @@ const Home = () => {
         <HeroSection />
         <About />
         <ProgramKerja />
-        <Contact />
       </main>
     </AuthLayout>
   );

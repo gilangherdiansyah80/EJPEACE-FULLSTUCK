@@ -99,7 +99,7 @@ const MarketplaceHome = () => {
             >
               <div className="bg-ejp rounded-xl flex justify-center items-center h-52">
                 <img
-                  src="/images/EJP-Creative.png"
+                  src="/images/logo2.png"
                   alt={product.title}
                   className="w-52"
                 />
