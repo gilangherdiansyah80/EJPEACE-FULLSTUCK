@@ -18,13 +18,16 @@ const DashboardHome = () => {
 
   const handleSubmit = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/carts/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dataForm),
-      });
+      const response = await fetch(
+        `https://ejpeaceentertainment.com/api/carts/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataForm),
+        }
+      );
       if (response.ok) {
         alert("Data updated successfully!");
       } else {
@@ -36,19 +39,19 @@ const DashboardHome = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/product")
+    fetch("https://ejpeaceentertainment.com/api/product")
       .then((response) => response.json())
       .then((data) => setDataProducts(data.payload.datas));
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/kerusakan")
+    fetch("https://ejpeaceentertainment.com/api/kerusakan")
       .then((response) => response.json())
       .then((data) => setDataKerusakan(data.payload.datas));
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/carts")
+    fetch("https://ejpeaceentertainment.com/api/carts")
       .then((response) => response.json())
       .then((data) => setDataCarts(data.payload.datas));
   }, []);

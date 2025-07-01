@@ -45,7 +45,7 @@ const LoginSection = () => {
     return () => clearTimeout(typingTimeout);
   }, [text, isDeleting, index]);
 
-  const endPoint = "http://localhost:3000/api/users";
+  const endPoint = "https://ejpeaceentertainment.com/api/users";
   const navigate = useNavigate();
 
   const fetchData = async () => {

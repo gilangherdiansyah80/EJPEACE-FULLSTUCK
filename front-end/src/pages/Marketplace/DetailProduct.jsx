@@ -20,7 +20,9 @@ const DetailProduct = () => {
   };
 
   const fetchDetailProduct = async () => {
-    const response = await fetch(`http://localhost:3000/api/productId/${id}`);
+    const response = await fetch(
+      `https://ejpeaceentertainment.com/api/productId/${id}`
+    );
     const data = await response.json();
     setDetailProduct(data.payload.datas);
   };
@@ -64,13 +66,16 @@ const DetailProduct = () => {
     console.log("Data to be sent to the server:", cartData); // Debugging: cek data yang dikirim
 
     try {
-      const response = await fetch("http://localhost:3000/api/carts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(cartData),
-      });
+      const response = await fetch(
+        "https://ejpeaceentertainment.com/api/carts",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(cartData),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();

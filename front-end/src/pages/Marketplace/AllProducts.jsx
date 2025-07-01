@@ -20,7 +20,9 @@ const MarketplaceHome = () => {
   };
 
   const fetchDataProducts = async () => {
-    const response = await fetch("http://localhost:3000/api/product");
+    const response = await fetch(
+      "https://ejpeaceentertainment.com/api/product"
+    );
     const data = await response.json();
     setDataProducts(data.payload.datas);
   };

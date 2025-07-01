@@ -6,16 +6,19 @@ const DashboardProducts = () => {
   const [dataProducts, setDataProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/product")
+    fetch("https://ejpeaceentertainment.com/api/product")
       .then((response) => response.json())
       .then((data) => setDataProducts(data.payload.datas));
   }, []);
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/product/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `https://ejpeaceentertainment.com/api/product/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (response.ok) {
         alert("Product deleted successfully!");

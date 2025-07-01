@@ -24,7 +24,7 @@ const DashboardEditProducts = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/productId/${id}`
+          `https://ejpeaceentertainment.com/api/productId/${id}`
         );
         const result = await response.json();
 
@@ -52,7 +52,7 @@ const DashboardEditProducts = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:3000/api/product/${id}`, {
+    fetch(`https://ejpeaceentertainment.com/api/product/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -57,7 +57,7 @@ const Register = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/api/v1/create-users",
+        "https://ejpeaceentertainment.com/api/create-users",
         {
           method: "POST",
           headers: {

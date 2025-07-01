@@ -43,7 +43,7 @@ const AuthLayoutMarket = ({ children }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/search?query=${query}`
+          `https://ejpeaceentertainment.com/api/search?query=${query}`
         );
         const data = await response.json();
 
@@ -70,7 +70,9 @@ const AuthLayoutMarket = ({ children }) => {
     }
 
     try {
-      const res = await fetch(`http://localhost:3000/api/product/${query}`);
+      const res = await fetch(
+        `https://ejpeaceentertainment.com/api/product/${query}`
+      );
       if (!res.ok) {
         throw new Error("Failed to fetch data.");
       }
@@ -97,7 +99,7 @@ const AuthLayoutMarket = ({ children }) => {
 
   const handleRemoveCart = (id) => {
     try {
-      fetch(`http://localhost:3000/api/carts/${id}`, {
+      fetch(`https://ejpeaceentertainment.com/api/carts/${id}`, {
         method: "DELETE",
       });
       fetchDataCart();
@@ -108,7 +110,9 @@ const AuthLayoutMarket = ({ children }) => {
 
   const getData = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/cartId/${id}`);
+      const response = await fetch(
+        `https://ejpeaceentertainment.com/api/cartId/${id}`
+      );
       const data = await response.json();
       setCartCheckout(data.payload.datas);
     } catch (error) {
@@ -171,7 +175,9 @@ const AuthLayoutMarket = ({ children }) => {
 
   const fetchDataCart = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/carts");
+      const response = await fetch(
+        "https://ejpeaceentertainment.com/api/carts"
+      );
       const data = await response.json();
       setDataCart(data.payload.datas);
     } catch (error) {
@@ -195,27 +201,32 @@ const AuthLayoutMarket = ({ children }) => {
 
   const handleCheckout = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/create-invoice", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          external_id: "Order " + Math.random().toString(36).slice(2, 7),
-          amount: calculateTotal(selectedProducts),
-          description: `Order barang ${cartCheckout
-            .map((item) => item.title)
-            .join(", ")}`,
-          invoice_duration: 86400,
-          customer: {
-            given_names: `${cartCheckout.map((item) => item.name).join(", ")}`,
-            email: `${cartCheckout.map((item) => item.email).join(", ")}`,
-            mobile_number: `${cartCheckout
-              .map((item) => item.telepon)
-              .join(", ")}`,
+      const response = await fetch(
+        "https://ejpeaceentertainment.com/api/create-invoice",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-        }),
-      });
+          body: JSON.stringify({
+            external_id: "Order " + Math.random().toString(36).slice(2, 7),
+            amount: calculateTotal(selectedProducts),
+            description: `Order barang ${cartCheckout
+              .map((item) => item.title)
+              .join(", ")}`,
+            invoice_duration: 86400,
+            customer: {
+              given_names: `${cartCheckout
+                .map((item) => item.name)
+                .join(", ")}`,
+              email: `${cartCheckout.map((item) => item.email).join(", ")}`,
+              mobile_number: `${cartCheckout
+                .map((item) => item.telepon)
+                .join(", ")}`,
+            },
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();

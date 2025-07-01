@@ -544,7 +544,7 @@ app.post("/api/payment-package", (req, res) => {
 });
 
 // Endpoint POST untuk membuat user baru
-app.post("/api/v1/create-users", (req, res) => {
+app.post("/api/create-users", (req, res) => {
   const data = req.body;
   console.log(data);
   const { name, username, telepon, email, password } = data;
