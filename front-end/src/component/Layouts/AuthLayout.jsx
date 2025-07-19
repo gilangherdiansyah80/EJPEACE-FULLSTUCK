@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import RefundPopup from "../Elements/RefundPopup";
+import TermPopup from "../Elements/TermPopup";
 
 const AuthLayout = ({
   children,
@@ -28,6 +30,8 @@ const AuthLayout = ({
   const [activeMenu, setActiveMenu] = useState("home");
   const [logoIndex, setLogoIndex] = useState(0);
   const logos = ["/images/logo1.png", "/images/logo2.png"];
+  const [showTerms, setShowTerms] = useState(false);
+  const [showRefund, setShowRefund] = useState(false);
 
   const handerOpen = () => setOpen(!open);
 
@@ -300,12 +304,28 @@ const AuthLayout = ({
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
-        <img
-          className="w-52 h-50 lg:h-52 lg:w-52"
-          src="/images/logo1.png"
-          alt=""
-        />
+        <div className="text-center text-sm md:text-base">
+          <p>
+            © 2025 EJPeace Entertainment. All Rights Reserved. |{" "}
+            <button
+              onClick={() => setShowTerms(true)}
+              className="underline hover:text-blue-300 cursor-pointer"
+            >
+              Terms & Conditions
+            </button>{" "}
+            |{" "}
+            <button
+              onClick={() => setShowRefund(true)}
+              className="underline hover:text-blue-300 cursor-pointer"
+            >
+              Refund Policy
+            </button>
+          </p>
+        </div>
       </footer>
+
+      {showTerms && <TermPopup button={() => setShowTerms(false)} />}
+      {showRefund && <RefundPopup button={() => setShowRefund(false)} />}
     </div>
   );
 };
